@@ -4,68 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Kerelos Nakhla — Data Analyst and BI Developer portfolio showcasing interactive Power BI dashboards, Python data pipelines, and analytics case studies.">
-  <meta name="theme-color" content="#f5f3ee">
+  <meta name="theme-color" content="#f7f6f2">
   <title>Kerelos Nakhla | Data Analyst & BI Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=2.5">
-
+  <link rel="stylesheet" href="style.css?v=3.0">
   <style>
-    /* Critical layout to prevent any unstyled layout shift */
-    .project-gallery-wrapper {
-      width: 100%;
-      display: block;
-      margin-bottom: 20px;
-    }
-    .project-gallery {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background: #0c0d10;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    .gallery-slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.35s ease, visibility 0.35s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .gallery-slide.active {
-      opacity: 1;
-      visibility: visible;
-      z-index: 2;
-    }
-    .gallery-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-      background: #0c0d10;
-    }
-    .profile-frame {
-      width: 220px;
-      height: 220px;
-      border-radius: 50% !important;
-      overflow: hidden !important;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.12) !important;
-    }
-    .profile-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    /* Critical inline safeguards */
+    .project-gallery-wrapper { width: 100%; display: block; }
+    .project-gallery { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #0c0d10; border-radius: 12px; overflow: hidden; }
+    .gallery-slide { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; display: flex; align-items: center; justify-content: center; }
+    .gallery-slide.active { opacity: 1; visibility: visible; z-index: 2; }
+    .gallery-slide img { width: 100%; height: 100%; object-fit: contain; display: block; background: #0c0d10; }
+    .profile-frame { width: 240px; height: 240px; border-radius: 50% !important; overflow: hidden !important; }
+    .profile-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
   </style>
-
 </head>
 <body>
   <div class="cursor-dot"></div><div class="cursor-ring"></div>
@@ -75,6 +29,8 @@
     <a class="logo magnetic" href="#home">KEN<span>.</span></a>
     <nav>
       <a href="#about">About</a>
+      <a href="#cv">Experience</a>
+      <a href="#certificates">Certificates</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
@@ -83,11 +39,17 @@
       <button class="theme-toggle magnetic" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">
         <span class="theme-icon">☾</span><span class="theme-text">Dark</span>
       </button>
-      <a class="header-link magnetic" href="https://github.com/Kerelos-Nakhla" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="header-icon-link magnetic" href="https://github.com/Kerelos-Nakhla" target="_blank" rel="noopener" title="GitHub Profile" aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+      <a class="header-icon-link magnetic" href="https://www.linkedin.com/in/kerelos-nakhla/" target="_blank" rel="noopener" title="LinkedIn Profile" aria-label="LinkedIn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      </a>
     </div>
   </header>
 
   <main>
+    <!-- HERO SECTION -->
     <section id="home" class="hero section">
       <div class="hero-copy reveal">
         <p class="eyebrow">DATA ANALYST · BI DEVELOPER</p>
@@ -95,230 +57,402 @@
           <span class="hero-name">Kerelos Nakhla</span>
           <span class="hero-tagline">Turning data into <em>clear decisions.</em></span>
         </h1>
-        <p class="hero-lead">I build analytical solutions, interactive Power BI experiences, and data-driven stories that turn complex datasets into practical business insight.</p>
+        <p class="hero-lead">Data Analyst specializing in interactive Power BI dashboards, dimensional modeling, Python pipelines, and turning complex datasets across real estate, healthcare, telecom, and sales into executive clarity.</p>
+        
+        <div class="hero-contact-strip">
+          <a class="contact-pill" href="tel:+201553035435">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            +201553035435
+          </a>
+          <a class="contact-pill" href="tel:+201032395119">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            +201032395119
+          </a>
+          <span class="contact-pill location">📍 Egypt</span>
+        </div>
+
         <div class="hero-actions">
           <a class="button button-dark magnetic" href="#projects">Explore projects <span>↓</span></a>
           <a class="button button-outline magnetic" href="Assets/CV/Kerelos%20Nakhla%20Saad.pdf" download>Download CV ↓</a>
-          <a class="text-link" href="https://www.linkedin.com/in/kerelos-nakhla/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="social-btn magnetic" href="https://www.linkedin.com/in/kerelos-nakhla/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg> LinkedIn
+          </a>
+          <a class="social-btn magnetic" href="https://github.com/Kerelos-Nakhla" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> GitHub
+          </a>
         </div>
       </div>
       <div class="hero-profile reveal">
         <div class="profile-frame">
           <img src="Assets/Profile/Profile.jpg" alt="Kerelos Nakhla">
         </div>
-        <div class="profile-caption">
-          <span>KERELOS NAKHLA</span>
-          <span>EGYPT · ANALYTICS</span>
-        </div>
       </div>
     </section>
 
+    <!-- ABOUT SECTION -->
     <section id="about" class="section split-section reveal">
       <div class="section-label">01 — ABOUT</div>
       <div class="section-content">
-        <h2>Analytical thinking with a visual mindset.</h2>
-        <p>I’m Kerelos Nakhla, a data-focused professional building towards a career in Data Analytics and Business Intelligence. My work combines SQL, Python, Power BI, Excel, Power Query and DAX to clean, analyze and communicate data.</p>
-        <p>My portfolio is built around practical, end-to-end projects — from real estate and telecom analytics to HR, sales, and a cinematic FIFA World Cup data experience.</p>
+        <h2>Translating raw data into measurable analysis.</h2>
+        <p>I’m Kerelos Nakhla, a data-focused professional building analytical solutions, dimensional models, and decision-support dashboards. My background merges Medical Informatics with hands-on business intelligence experience.</p>
+        <p>Across portfolio projects, I have modeled and analyzed more than <strong>84,000+ records</strong>, units, customers, orders, matches, and employee entries with deep attention to clean DAX measures, scalable schemas, and intuitive design.</p>
         <div class="mini-stats">
-          <div><strong data-count="6">0</strong><span>Featured projects</span></div>
-          <div><strong data-count="8">0</strong><span>Core tools & methods</span></div>
-          <div><strong>2027</strong><span>Expected graduation</span></div>
+          <div>
+            <strong>84K+</strong>
+            <span>Records & units analyzed</span>
+          </div>
+          <div>
+            <strong>6</strong>
+            <span>Enterprise Power BI case studies</span>
+          </div>
+          <div>
+            <strong>100%</strong>
+            <span>Custom dimensional data models</span>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- CV & EXPERIENCE SECTION (MATCHING CV) -->
+    <section id="cv" class="section reveal">
+      <div class="section-top">
+        <div>
+          <div class="section-label">02 — EXPERIENCE & EDUCATION</div>
+          <h2>Professional background aligned with business impact.</h2>
+        </div>
+        <a class="button button-outline magnetic" href="Assets/CV/Kerelos%20Nakhla%20Saad.pdf" download>
+          Download PDF CV ↓
+        </a>
+      </div>
+
+      <div class="cv-grid">
+        <!-- Experience -->
+        <div class="cv-card">
+          <div class="cv-card-header">
+            <span class="cv-badge">EXPERIENCE</span>
+            <span class="cv-date">2026</span>
+          </div>
+          <h3 class="cv-role">Data Analysis Trainee</h3>
+          <h4 class="cv-org">Route Academy Egypt</h4>
+          <ul class="cv-list">
+            <li>Applied Excel, SQL, Power BI, Python, Pandas, NumPy, Power Query, DAX, data cleaning, EDA, and data visualization across practical data-analysis workflows.</li>
+            <li>Built analytical workflows covering data preparation, transformation, KPI development, dashboard design, exploratory analysis, and business reporting.</li>
+            <li>Translated real-world business requirements into structured dimensional models, calculated measures, and interactive Power BI visualizations.</li>
+          </ul>
+        </div>
+
+        <!-- Education -->
+        <div class="cv-card">
+          <div class="cv-card-header">
+            <span class="cv-badge">EDUCATION</span>
+            <span class="cv-date">2023 – Present</span>
+          </div>
+          <h3 class="cv-role">B.Sc. in Computers & Artificial Intelligence</h3>
+          <h4 class="cv-org">Beni-Suef National University — Medical Informatics</h4>
+          <p class="cv-gpa"><strong>GPA: 3.5 / 4.00</strong></p>
+          <ul class="cv-list">
+            <li>Specialization in Medical Informatics, combining computer science foundations, algorithms, data structures, and health data intelligence.</li>
+            <li>Coursework in Database Systems, Machine Learning Foundations, Linear Algebra, Probability & Statistics, and Software Engineering.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATES & HONORS SECTION -->
+    <section id="certificates" class="section reveal">
+      <div class="section-top">
+        <div>
+          <div class="section-label">03 — CERTIFICATES & HONORS</div>
+          <h2>Verified credentials & recognized top performance.</h2>
+        </div>
+      </div>
+
+      <!-- Top Performer Featured Showcase -->
+      <div class="top-performer-banner">
+        <div class="performer-badge-pill">★ TOP PERFORMER IN DATA ANALYSIS</div>
+        <div class="performer-content">
+          <div class="performer-text">
+            <h3>Top Performer Recognition</h3>
+            <p class="performer-org">Route Academy Egypt · Data Analysis Track</p>
+            <p class="performer-desc">Awarded top performer honors for outstanding analytical execution, excellence in exploratory data analysis, advanced Power BI dashboard architecture, and presentation of business intelligence insights.</p>
+            <div class="tags" style="margin-top: 14px;">
+              <span>Top Performer</span><span>Power BI</span><span>Data Analytics</span><span>DAX</span>
+            </div>
+          </div>
+          <div class="performer-image-frame">
+            <img src="Assets/Certificates/top-performer.png" alt="Top Performer in Data Analysis Certificate" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- Certificate Grid -->
+      <div class="certs-grid">
+        <div class="cert-card">
+          <div class="cert-thumb">
+            <img src="Assets/Certificates/nti-advanced-data-analysis.png" alt="NTI Advanced Data Analysis Certificate" loading="lazy">
+          </div>
+          <div class="cert-info">
+            <span class="cert-issuer">NTI (National Telecommunication Institute)</span>
+            <h4>Advanced Data Analysis</h4>
+            <p>Advanced practical curriculum covering analytical thinking, statistical evaluation, business data cleaning, and KPI architectures.</p>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-thumb">
+            <img src="Assets/Certificates/linear-algebra.png" alt="Linear Algebra for Machine Learning and Data" loading="lazy">
+          </div>
+          <div class="cert-info">
+            <span class="cert-issuer">DeepLearning.AI / Mathematics for ML</span>
+            <h4>Linear Algebra for Machine Learning and Data</h4>
+            <p>Vector spaces, matrix operations, eigenvalues, transformations, and mathematical foundations for data modeling.</p>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-thumb">
+            <img src="Assets/Certificates/git-github-bootcamp.png" alt="The Git and GitHub Bootcamp" loading="lazy">
+          </div>
+          <div class="cert-info">
+            <span class="cert-issuer">Version Control & Open Source</span>
+            <h4>The Git & GitHub Bootcamp</h4>
+            <p>Git branching workflows, version management, repository organization, collaborative commits, and CI/CD basics.</p>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-thumb">
+            <img src="Assets/Certificates/python-level-1.png" alt="Python Level 1 Certificate" loading="lazy">
+          </div>
+          <div class="cert-info">
+            <span class="cert-issuer">Programming & Data Foundations</span>
+            <h4>Python — Level 1</h4>
+            <p>Core programming logic, data structures, loops, functions, and programmatic data handling.</p>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-thumb">
+            <img src="Assets/Certificates/python-level-2.png" alt="Python Level 2 Certificate" loading="lazy">
+          </div>
+          <div class="cert-info">
+            <span class="cert-issuer">Data Science & Analytics</span>
+            <h4>Python — Level 2</h4>
+            <p>Advanced data manipulation, object-oriented concepts, tabular workflows with Pandas, NumPy calculations, and visualization.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
     <section id="projects" class="section projects-section">
       <div class="section-top reveal">
         <div>
-          <div class="section-label">02 — PROJECTS</div>
+          <div class="section-label">04 — PROJECTS</div>
           <h2>Projects built to answer business questions.</h2>
         </div>
-        <a class="text-link" href="https://github.com/Kerelos-Nakhla" target="_blank" rel="noopener">View all repositories ↗</a>
+        <a class="text-link" href="https://github.com/Kerelos-Nakhla" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block; vertical-align:middle; margin-right:4px;"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> View all repositories ↗
+        </a>
       </div>
 
       <div class="project-list">
         <article class="project-card reveal" data-project="nor">
           <div class="project-gallery-wrapper">
             <div class="project-gallery" id="gallery-nor" data-total="14">
-              <div class="gallery-slide active" data-caption="Landing Page">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/NOR-Dashboarb/main/Dashboard%20Previews/Landing%20Page.png" alt="NŌR Dashboard - Landing Page" loading="lazy">
-              </div>
-              <div class="gallery-slide " data-caption="1- Global Summary Page">
+              <div class="gallery-slide active" data-caption="1- Global Summary Page">
                 <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/NOR-Dashboarb/main/Dashboard%20Previews/1-%20Global%20Summary%20Page.png" alt="NŌR Dashboard - 1- Global Summary Page" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="2- Global Summary Page">
+              <div class="gallery-slide" data-caption="2- Global Summary Page">
                 <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/NOR-Dashboarb/main/Dashboard%20Previews/2-%20Global%20Summary%20Page.png" alt="NŌR Dashboard - 2- Global Summary Page" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Project Installment Second Option">
+              <div class="gallery-slide" data-caption="Landing Page">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/NOR-Dashboarb/main/Dashboard%20Previews/Landing%20Page.png" alt="NŌR Dashboard - Landing Page" loading="lazy">
+              </div>
+              <div class="gallery-slide" data-caption="Data Model">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/NOR-Dashboarb/main/Dashboard%20Previews/Model.png" alt="NŌR Dashboard - Data Model" loading="lazy">
+              </div>
+              <div class="gallery-slide" data-caption="Project Installment Second Option">
                 <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/NOR-Dashboarb/main/Dashboard%20Previews/Project%20Installment%20Second%20Option.png" alt="NŌR Dashboard - Project Installment Second Option" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Project Installments By Bank">
+              <div class="gallery-slide" data-caption="Project Installments By Bank">
                 <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/NOR-Dashboarb/main/Dashboard%20Previews/Project%20Installments%20By%20Bank.png" alt="NŌR Dashboard - Project Installments By Bank" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Project Installments By Cash">
+              <div class="gallery-slide" data-caption="Project Installments By Cash">
                 <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/NOR-Dashboarb/main/Dashboard%20Previews/Project%20Installments%20By%20Cash.png" alt="NŌR Dashboard - Project Installments By Cash" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Project Installments First Option ">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/NOR-Dashboarb/main/Dashboard%20Previews/Project%20Installments%20First%20Option%20.png" alt="NŌR Dashboard - Project Installments First Option " loading="lazy">
+              <div class="gallery-slide" data-caption="Project Installments First Option">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/NOR-Dashboarb/main/Dashboard%20Previews/Project%20Installments%20First%20Option%20.png" alt="NŌR Dashboard - Project Installments First Option" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Project Installments">
+              <div class="gallery-slide" data-caption="Project Installments">
                 <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/NOR-Dashboarb/main/Dashboard%20Previews/Project%20Installments.png" alt="NŌR Dashboard - Project Installments" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Project Summary By Bank Wise">
+              <div class="gallery-slide" data-caption="Project Summary By Bank Wise">
                 <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/NOR-Dashboarb/main/Dashboard%20Previews/Project%20Summary%20By%20Bank%20Wise.png" alt="NŌR Dashboard - Project Summary By Bank Wise" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Project Summary By Bank">
+              <div class="gallery-slide" data-caption="Project Summary By Bank">
                 <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/NOR-Dashboarb/main/Dashboard%20Previews/Project%20Summary%20By%20Bank.png" alt="NŌR Dashboard - Project Summary By Bank" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Project Summary By Cash">
+              <div class="gallery-slide" data-caption="Project Summary By Cash">
                 <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/NOR-Dashboarb/main/Dashboard%20Previews/Project%20Summary%20By%20Cash.png" alt="NŌR Dashboard - Project Summary By Cash" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Project Summary">
+              <div class="gallery-slide" data-caption="Project Summary">
                 <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/NOR-Dashboarb/main/Dashboard%20Previews/Project%20Summary.png" alt="NŌR Dashboard - Project Summary" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Summary By Date Page">
+              <div class="gallery-slide" data-caption="Summary By Date Page">
                 <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/NOR-Dashboarb/main/Dashboard%20Previews/Summary%20By%20Date%20Page.png" alt="NŌR Dashboard - Summary By Date Page" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Model">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/NOR-Dashboarb/main/Dashboard%20Previews/Model.png" alt="NŌR Dashboard - Model" loading="lazy">
-              </div>
               <div class="gallery-overlay">
-                <a class="gallery-open-btn" href="https://github.com/Kerelos-Nakhla/NOR-Dashboarb" target="_blank" rel="noopener">Open Repository ↗</a>
+                <a class="gallery-open-btn" href="https://github.com/Kerelos-Nakhla/NOR-Dashboarb" target="_blank" rel="noopener">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>Open Repo ↗
+                </a>
               </div>
               <button class="gallery-nav-btn prev" aria-label="Previous preview" type="button">&#8249;</button>
               <button class="gallery-nav-btn next" aria-label="Next preview" type="button">&#8250;</button>
-              <div class="gallery-badge"><span class="current-idx">1</span> / 14 · <span class="current-caption">Landing Page</span></div>
+              <div class="gallery-badge"><span class="current-idx">1</span> / 14 · <span class="current-caption">1- Global Summary Page</span></div>
             </div>
           </div>
           <div class="project-number">01</div>
           <div class="project-info">
             <p class="project-type">REAL ESTATE · POWER BI</p>
             <h3>NŌR Dashboard</h3>
-            <p>Comprehensive real-estate intelligence covering portfolio performance, compound collections, adopted vs sold units, cash/bank reconciliation, and a galaxy-schema data model.</p>
-            <div class="tags"><span>Power BI</span><span>DAX</span><span>Power Query</span><span>Data Modeling</span></div>
+            <p>Analyzed 73,943 units across 8 real estate projects using integrated sales and installment data. Built a Galaxy Schema with 2 fact tables and 6+ dimension tables covering projects, units, customers, payment plans, banks, and dates.</p>
+            <div class="tags"><span>Power BI</span><span>DAX</span><span>Power Query</span><span>Galaxy Schema</span><span>Data Modeling</span></div>
           </div>
-          <a class="project-arrow" href="https://github.com/Kerelos-Nakhla/NOR-Dashboarb" target="_blank" rel="noopener" aria-label="View NŌR Dashboard on GitHub">View ↗</a>
+          <a class="project-arrow" href="https://github.com/Kerelos-Nakhla/NOR-Dashboarb" target="_blank" rel="noopener" aria-label="View NŌR Dashboard on GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> View ↗
+          </a>
         </article>
 
         <article class="project-card reveal" data-project="road-to-glory">
           <div class="project-gallery-wrapper">
             <div class="project-gallery" id="gallery-road-to-glory" data-total="11">
-              <div class="gallery-slide active" data-caption="Landing Page">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Landing%20Page.png" alt="The Road To Glory - Landing Page" loading="lazy">
+              <div class="gallery-slide active" data-caption="Discipline Players">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Discipline%20Players.png" alt="The Road to Glory - Discipline Players" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Overview">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Overview.png" alt="The Road To Glory - Overview" loading="lazy">
+              <div class="gallery-slide" data-caption="Group Stage">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Group%20Stage.png" alt="The Road to Glory - Group Stage" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Discipline Players">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Discipline%20Players.png" alt="The Road To Glory - Discipline Players" loading="lazy">
+              <div class="gallery-slide" data-caption="Knockout Stage">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Knockout%20Stage.png" alt="The Road to Glory - Knockout Stage" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Group Stage">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Group%20Stage.png" alt="The Road To Glory - Group Stage" loading="lazy">
+              <div class="gallery-slide" data-caption="Landing Page">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Landing%20Page.png" alt="The Road to Glory - Landing Page" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Knockout Stage">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Knockout%20Stage.png" alt="The Road To Glory - Knockout Stage" loading="lazy">
+              <div class="gallery-slide" data-caption="Matches">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Matches.png" alt="The Road to Glory - Matches" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Matches">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Matches.png" alt="The Road To Glory - Matches" loading="lazy">
+              <div class="gallery-slide" data-caption="Data Model">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Model.png" alt="The Road to Glory - Data Model" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Referees">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Referees.png" alt="The Road To Glory - Referees" loading="lazy">
+              <div class="gallery-slide" data-caption="Overview">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Overview.png" alt="The Road to Glory - Overview" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Stadiums">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Stadiums.png" alt="The Road To Glory - Stadiums" loading="lazy">
+              <div class="gallery-slide" data-caption="Referees">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Referees.png" alt="The Road to Glory - Referees" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Top Own Scorers">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Top%20Own%20Scorers.png" alt="The Road To Glory - Top Own Scorers" loading="lazy">
+              <div class="gallery-slide" data-caption="Stadiums">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Stadiums.png" alt="The Road to Glory - Stadiums" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Top Scorers">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Top%20Scorers.png" alt="The Road To Glory - Top Scorers" loading="lazy">
+              <div class="gallery-slide" data-caption="Top Own Scorers">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Top%20Own%20Scorers.png" alt="The Road to Glory - Top Own Scorers" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Model">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Model.png" alt="The Road To Glory - Model" loading="lazy">
+              <div class="gallery-slide" data-caption="Top Scorers">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Top%20Scorers.png" alt="The Road to Glory - Top Scorers" loading="lazy">
               </div>
               <div class="gallery-overlay">
-                <a class="gallery-open-btn" href="https://github.com/Kerelos-Nakhla/The-Road-To-Glory" target="_blank" rel="noopener">Open Repository ↗</a>
+                <a class="gallery-open-btn" href="https://github.com/Kerelos-Nakhla/The-Road-To-Glory" target="_blank" rel="noopener">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>Open Repo ↗
+                </a>
               </div>
               <button class="gallery-nav-btn prev" aria-label="Previous preview" type="button">&#8249;</button>
               <button class="gallery-nav-btn next" aria-label="Next preview" type="button">&#8250;</button>
-              <div class="gallery-badge"><span class="current-idx">1</span> / 11 · <span class="current-caption">Landing Page</span></div>
+              <div class="gallery-badge"><span class="current-idx">1</span> / 11 · <span class="current-caption">Discipline Players</span></div>
             </div>
           </div>
           <div class="project-number">02</div>
           <div class="project-info">
             <p class="project-type">SPORTS ANALYTICS · PYTHON & POWER BI</p>
-            <h3>The Road To Glory</h3>
-            <p>Interactive FIFA World Cup 2026 intelligence system combining Python web scraping (BeautifulSoup), automated pandas ETL pipelines, advanced DAX, and tournament analytics.</p>
-            <div class="tags"><span>Python</span><span>BeautifulSoup</span><span>Power BI</span><span>DAX</span></div>
+            <h3>The Road to Glory</h3>
+            <p>Modeled 48 teams, 104 matches, 16 stadiums, 308 goals, and 195 player scoring records for interactive FIFA World Cup 2026 tournament analysis. Scraped and prepared data with Python, Beautiful Soup, and Pandas.</p>
+            <div class="tags"><span>Power BI</span><span>Python</span><span>Beautiful Soup</span><span>Pandas</span><span>DAX</span></div>
           </div>
-          <a class="project-arrow" href="https://github.com/Kerelos-Nakhla/The-Road-To-Glory" target="_blank" rel="noopener" aria-label="View The Road To Glory on GitHub">View ↗</a>
+          <a class="project-arrow" href="https://github.com/Kerelos-Nakhla/The-Road-To-Glory" target="_blank" rel="noopener" aria-label="View The Road to Glory on GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> View ↗
+          </a>
         </article>
 
         <article class="project-card reveal" data-project="hr-attrition">
           <div class="project-gallery-wrapper">
             <div class="project-gallery" id="gallery-hr-attrition" data-total="11">
-              <div class="gallery-slide active" data-caption="Landing Page">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/Landing%20Page.png" alt="HR Attrition - Landing Page" loading="lazy">
+              <div class="gallery-slide active" data-caption="1- Risk Intelligence Page">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/1-%20Risk%20Intelligence%20Page.png" alt="HR Attrition & Risk Intelligence - 1- Risk Intelligence Page" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Overview Page">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/Overview%20Page.png" alt="HR Attrition - Overview Page" loading="lazy">
+              <div class="gallery-slide" data-caption="2- Risk Intelligence Page">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/2-%20Risk%20Intelligence%20Page.png" alt="HR Attrition & Risk Intelligence - 2- Risk Intelligence Page" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="1- Risk Intelligence Page">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/1-%20Risk%20Intelligence%20Page.png" alt="HR Attrition - 1- Risk Intelligence Page" loading="lazy">
+              <div class="gallery-slide" data-caption="3- Risk Intelligence Page">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/3-%20Risk%20Intelligence%20Page.png" alt="HR Attrition & Risk Intelligence - 3- Risk Intelligence Page" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="2- Risk Intelligence Page">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/2-%20Risk%20Intelligence%20Page.png" alt="HR Attrition - 2- Risk Intelligence Page" loading="lazy">
+              <div class="gallery-slide" data-caption="4- Risk Intelligence Page">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/4-%20Risk%20Intelligence%20Page.png" alt="HR Attrition & Risk Intelligence - 4- Risk Intelligence Page" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="3- Risk Intelligence Page">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/3-%20Risk%20Intelligence%20Page.png" alt="HR Attrition - 3- Risk Intelligence Page" loading="lazy">
+              <div class="gallery-slide" data-caption="5- Risk Intelligence Page">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/5-%20Risk%20Intelligence%20Page.png" alt="HR Attrition & Risk Intelligence - 5- Risk Intelligence Page" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="4- Risk Intelligence Page">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/4-%20Risk%20Intelligence%20Page.png" alt="HR Attrition - 4- Risk Intelligence Page" loading="lazy">
+              <div class="gallery-slide" data-caption="Career & Pay Page">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/Career%20%26%20Pay%20Page.png" alt="HR Attrition & Risk Intelligence - Career & Pay Page" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="5- Risk Intelligence Page">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/5-%20Risk%20Intelligence%20Page.png" alt="HR Attrition - 5- Risk Intelligence Page" loading="lazy">
+              <div class="gallery-slide" data-caption="Demographic Page">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/Demographic%20Page.png" alt="HR Attrition & Risk Intelligence - Demographic Page" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Career & Pay Page">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/Career%20%26%20Pay%20Page.png" alt="HR Attrition - Career & Pay Page" loading="lazy">
+              <div class="gallery-slide" data-caption="Drivers Page">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/Drivers%20Page.png" alt="HR Attrition & Risk Intelligence - Drivers Page" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Demographic Page">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/Demographic%20Page.png" alt="HR Attrition - Demographic Page" loading="lazy">
+              <div class="gallery-slide" data-caption="Landing Page">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/Landing%20Page.png" alt="HR Attrition & Risk Intelligence - Landing Page" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Drivers Page">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/Drivers%20Page.png" alt="HR Attrition - Drivers Page" loading="lazy">
+              <div class="gallery-slide" data-caption="Data Model">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/Model.png" alt="HR Attrition & Risk Intelligence - Data Model" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Model">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/Model.png" alt="HR Attrition - Model" loading="lazy">
+              <div class="gallery-slide" data-caption="Overview Page">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/Overview%20Page.png" alt="HR Attrition & Risk Intelligence - Overview Page" loading="lazy">
               </div>
               <div class="gallery-overlay">
-                <a class="gallery-open-btn" href="https://github.com/Kerelos-Nakhla/HR-Attrition" target="_blank" rel="noopener">Open Repository ↗</a>
+                <a class="gallery-open-btn" href="https://github.com/Kerelos-Nakhla/HR-Attrition" target="_blank" rel="noopener">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>Open Repo ↗
+                </a>
               </div>
               <button class="gallery-nav-btn prev" aria-label="Previous preview" type="button">&#8249;</button>
               <button class="gallery-nav-btn next" aria-label="Next preview" type="button">&#8250;</button>
-              <div class="gallery-badge"><span class="current-idx">1</span> / 11 · <span class="current-caption">Landing Page</span></div>
+              <div class="gallery-badge"><span class="current-idx">1</span> / 11 · <span class="current-caption">1- Risk Intelligence Page</span></div>
             </div>
           </div>
           <div class="project-number">03</div>
           <div class="project-info">
-            <p class="project-type">HR ANALYTICS · POWER BI</p>
-            <h3>HR Attrition</h3>
-            <p>End-to-end workforce retention intelligence diagnosing attrition drivers, employee demographics, tenure curves, career & compensation distributions, and flight risk modeling.</p>
-            <div class="tags"><span>Power BI</span><span>DAX</span><span>HR Analytics</span><span>Data Modeling</span></div>
+            <p class="project-type">PEOPLE ANALYTICS · POWER BI</p>
+            <h3>HR Attrition & Risk Intelligence</h3>
+            <p>Analyzed 1,470 employee records across 35 attributes to identify workforce attrition patterns. Discovered a 20.1 percentage-point attrition gap between overtime and non-overtime staff (30.5% vs 10.4%).</p>
+            <div class="tags"><span>Power BI</span><span>DAX</span><span>Power Query</span><span>Risk Analysis</span><span>HR Metrics</span></div>
           </div>
-          <a class="project-arrow" href="https://github.com/Kerelos-Nakhla/HR-Attrition" target="_blank" rel="noopener" aria-label="View HR Attrition on GitHub">View ↗</a>
+          <a class="project-arrow" href="https://github.com/Kerelos-Nakhla/HR-Attrition" target="_blank" rel="noopener" aria-label="View HR Attrition & Risk Intelligence on GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> View ↗
+          </a>
         </article>
 
         <article class="project-card reveal" data-project="andalusia">
           <div class="project-gallery-wrapper">
             <div class="project-gallery" id="gallery-andalusia" data-total="2">
               <div class="gallery-slide active" data-caption="High Level Dashboard">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Andalusia-Dashboard/main/Dashboard%20Previews/High%20Level%20Dashboard.png" alt="Andalusia Dashboard - High Level Dashboard" loading="lazy">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Andalusia-Dashboard/main/Dashboard%20Previews/High%20Level%20Dashboard.png" alt="Andalusia Healthcare Analytics - High Level Dashboard" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Model">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Andalusia-Dashboard/main/Dashboard%20Previews/Model.png" alt="Andalusia Dashboard - Model" loading="lazy">
+              <div class="gallery-slide" data-caption="Data Model">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Andalusia-Dashboard/main/Dashboard%20Previews/Model.png" alt="Andalusia Healthcare Analytics - Data Model" loading="lazy">
               </div>
               <div class="gallery-overlay">
-                <a class="gallery-open-btn" href="https://github.com/Kerelos-Nakhla/Andalusia-Dashboard" target="_blank" rel="noopener">Open Repository ↗</a>
+                <a class="gallery-open-btn" href="https://github.com/Kerelos-Nakhla/Andalusia-Dashboard" target="_blank" rel="noopener">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>Open Repo ↗
+                </a>
               </div>
               <button class="gallery-nav-btn prev" aria-label="Previous preview" type="button">&#8249;</button>
               <button class="gallery-nav-btn next" aria-label="Next preview" type="button">&#8250;</button>
@@ -327,123 +461,185 @@
           </div>
           <div class="project-number">04</div>
           <div class="project-info">
-            <p class="project-type">HEALTHCARE & BUSINESS ANALYTICS · POWER BI</p>
-            <h3>Andalusia Dashboard</h3>
-            <p>Executive healthcare performance dashboard tracking patient volume, department efficiency, clinical revenue cycles, and documented star-schema reporting.</p>
-            <div class="tags"><span>Power BI</span><span>Healthcare Analytics</span><span>DAX</span><span>Data Modeling</span></div>
+            <p class="project-type">HEALTHCARE · BUSINESS INTELLIGENCE</p>
+            <h3>Andalusia Healthcare Analytics</h3>
+            <p>Integrated healthcare operations across 8 tables covering billing, marketing, medical CRM, payments, and departments. Built a dimensional Power BI model connecting financial and patient operational data.</p>
+            <div class="tags"><span>Power BI</span><span>DAX</span><span>Healthcare CRM</span><span>Dimensional Modeling</span><span>KPI Framework</span></div>
           </div>
-          <a class="project-arrow" href="https://github.com/Kerelos-Nakhla/Andalusia-Dashboard" target="_blank" rel="noopener" aria-label="View Andalusia Dashboard on GitHub">View ↗</a>
+          <a class="project-arrow" href="https://github.com/Kerelos-Nakhla/Andalusia-Dashboard" target="_blank" rel="noopener" aria-label="View Andalusia Healthcare Analytics on GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> View ↗
+          </a>
         </article>
 
         <article class="project-card reveal" data-project="etisalat">
           <div class="project-gallery-wrapper">
             <div class="project-gallery" id="gallery-etisalat" data-total="6">
-              <div class="gallery-slide active" data-caption="Landing Page">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Etisalat-Dashboard/main/Dashboard%20Previews/Landing%20Page.png" alt="Etisalat Dashboard - Landing Page" loading="lazy">
+              <div class="gallery-slide active" data-caption="Customers">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Etisalat-Dashboard/main/Dashboard%20Previews/Customers.png" alt="Etisalat Customer Churn & Revenue Risk - Customers" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Overview Page">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Etisalat-Dashboard/main/Dashboard%20Previews/Overview%20Page.png" alt="Etisalat Dashboard - Overview Page" loading="lazy">
+              <div class="gallery-slide" data-caption="Landing Page">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Etisalat-Dashboard/main/Dashboard%20Previews/Landing%20Page.png" alt="Etisalat Customer Churn & Revenue Risk - Landing Page" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Customers">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Etisalat-Dashboard/main/Dashboard%20Previews/Customers.png" alt="Etisalat Dashboard - Customers" loading="lazy">
+              <div class="gallery-slide" data-caption="Data Model">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Etisalat-Dashboard/main/Dashboard%20Previews/Model.png" alt="Etisalat Customer Churn & Revenue Risk - Data Model" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Payment Page">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Etisalat-Dashboard/main/Dashboard%20Previews/Payment%20Page.png" alt="Etisalat Dashboard - Payment Page" loading="lazy">
+              <div class="gallery-slide" data-caption="Overview Page">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Etisalat-Dashboard/main/Dashboard%20Previews/Overview%20Page.png" alt="Etisalat Customer Churn & Revenue Risk - Overview Page" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Services Page">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Etisalat-Dashboard/main/Dashboard%20Previews/Services%20Page.png" alt="Etisalat Dashboard - Services Page" loading="lazy">
+              <div class="gallery-slide" data-caption="Payment Page">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Etisalat-Dashboard/main/Dashboard%20Previews/Payment%20Page.png" alt="Etisalat Customer Churn & Revenue Risk - Payment Page" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Model">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Etisalat-Dashboard/main/Dashboard%20Previews/Model.png" alt="Etisalat Dashboard - Model" loading="lazy">
+              <div class="gallery-slide" data-caption="Services Page">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Etisalat-Dashboard/main/Dashboard%20Previews/Services%20Page.png" alt="Etisalat Customer Churn & Revenue Risk - Services Page" loading="lazy">
               </div>
               <div class="gallery-overlay">
-                <a class="gallery-open-btn" href="https://github.com/Kerelos-Nakhla/Etisalat-Dashboard" target="_blank" rel="noopener">Open Repository ↗</a>
+                <a class="gallery-open-btn" href="https://github.com/Kerelos-Nakhla/Etisalat-Dashboard" target="_blank" rel="noopener">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>Open Repo ↗
+                </a>
               </div>
               <button class="gallery-nav-btn prev" aria-label="Previous preview" type="button">&#8249;</button>
               <button class="gallery-nav-btn next" aria-label="Next preview" type="button">&#8250;</button>
-              <div class="gallery-badge"><span class="current-idx">1</span> / 6 · <span class="current-caption">Landing Page</span></div>
+              <div class="gallery-badge"><span class="current-idx">1</span> / 6 · <span class="current-caption">Customers</span></div>
             </div>
           </div>
           <div class="project-number">05</div>
           <div class="project-info">
-            <p class="project-type">TELECOM · CHURN & REVENUE RISK</p>
-            <h3>Etisalat Dashboard</h3>
-            <p>Telecom customer retention analytics examining subscription longevity, service adoption, payment channel patterns, and high-risk revenue exposure.</p>
-            <div class="tags"><span>Power BI</span><span>DAX</span><span>Power Query</span><span>Customer Analytics</span></div>
+            <p class="project-type">TELECOM · CHURN PREDICTION</p>
+            <h3>Etisalat Customer Churn & Revenue Risk</h3>
+            <p>Analyzed 7,043 telecom customers, identified a 26.54% churn rate, and quantified $2.86M in revenue at risk (17.83% of total revenue) across contract, service, payment, and customer dimensions.</p>
+            <div class="tags"><span>Power BI</span><span>DAX</span><span>Churn Analysis</span><span>Revenue Risk</span><span>Figma</span></div>
           </div>
-          <a class="project-arrow" href="https://github.com/Kerelos-Nakhla/Etisalat-Dashboard" target="_blank" rel="noopener" aria-label="View Etisalat Dashboard on GitHub">View ↗</a>
+          <a class="project-arrow" href="https://github.com/Kerelos-Nakhla/Etisalat-Dashboard" target="_blank" rel="noopener" aria-label="View Etisalat Customer Churn & Revenue Risk on GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> View ↗
+          </a>
         </article>
 
         <article class="project-card reveal" data-project="sysco">
           <div class="project-gallery-wrapper">
             <div class="project-gallery" id="gallery-sysco" data-total="5">
-              <div class="gallery-slide active" data-caption="Landing Page">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Sysco-Dashboard/main/Dashboard%20Previews/Landing%20Page.jpg" alt="Sysco Dashboard - Landing Page" loading="lazy">
+              <div class="gallery-slide active" data-caption="Categories & Products Page">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Sysco-Dashboard/main/Dashboard%20Previews/Categories%20%26%20Products%20Page.png" alt="SYSCO Sales & Operations Analytics - Categories & Products Page" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Categories & Products Page">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Sysco-Dashboard/main/Dashboard%20Previews/Categories%20%26%20Products%20Page.png" alt="Sysco Dashboard - Categories & Products Page" loading="lazy">
+              <div class="gallery-slide" data-caption="Customers & Employees & Suppliers">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Sysco-Dashboard/main/Dashboard%20Previews/Customers%20%26%20Employees%20%26%20Suppliers.png" alt="SYSCO Sales & Operations Analytics - Customers & Employees & Suppliers" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Customers & Employees & Suppliers">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Sysco-Dashboard/main/Dashboard%20Previews/Customers%20%26%20Employees%20%26%20Suppliers.png" alt="Sysco Dashboard - Customers & Employees & Suppliers" loading="lazy">
+              <div class="gallery-slide" data-caption="Landing Page">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Sysco-Dashboard/main/Dashboard%20Previews/Landing%20Page.jpg" alt="SYSCO Sales & Operations Analytics - Landing Page" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Sales & Orders Page">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Sysco-Dashboard/main/Dashboard%20Previews/Sales%20%26%20Orders%20Page.png" alt="Sysco Dashboard - Sales & Orders Page" loading="lazy">
+              <div class="gallery-slide" data-caption="Data Model">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Sysco-Dashboard/main/Dashboard%20Previews/Model.png" alt="SYSCO Sales & Operations Analytics - Data Model" loading="lazy">
               </div>
-              <div class="gallery-slide " data-caption="Model">
-                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Sysco-Dashboard/main/Dashboard%20Previews/Model.png" alt="Sysco Dashboard - Model" loading="lazy">
+              <div class="gallery-slide" data-caption="Sales & Orders Page">
+                <img src="https://raw.githubusercontent.com/Kerelos-Nakhla/Sysco-Dashboard/main/Dashboard%20Previews/Sales%20%26%20Orders%20Page.png" alt="SYSCO Sales & Operations Analytics - Sales & Orders Page" loading="lazy">
               </div>
               <div class="gallery-overlay">
-                <a class="gallery-open-btn" href="https://github.com/Kerelos-Nakhla/Sysco-Dashboard" target="_blank" rel="noopener">Open Repository ↗</a>
+                <a class="gallery-open-btn" href="https://github.com/Kerelos-Nakhla/Sysco-Dashboard" target="_blank" rel="noopener">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>Open Repo ↗
+                </a>
               </div>
               <button class="gallery-nav-btn prev" aria-label="Previous preview" type="button">&#8249;</button>
               <button class="gallery-nav-btn next" aria-label="Next preview" type="button">&#8250;</button>
-              <div class="gallery-badge"><span class="current-idx">1</span> / 5 · <span class="current-caption">Landing Page</span></div>
+              <div class="gallery-badge"><span class="current-idx">1</span> / 5 · <span class="current-caption">Categories & Products Page</span></div>
             </div>
           </div>
           <div class="project-number">06</div>
           <div class="project-info">
-            <p class="project-type">SALES & SUPPLY CHAIN · POWER BI & SQL</p>
-            <h3>Sysco Dashboard</h3>
-            <p>Enterprise supply chain and commercial analytics evaluating cross-region sales volume, order fulfillment velocity, category profitability, supplier performance, and SQL database pipelines.</p>
-            <div class="tags"><span>Power BI</span><span>SQL</span><span>Supply Chain</span><span>Operations</span></div>
+            <p class="project-type">SUPPLY CHAIN · SALES INTELLIGENCE</p>
+            <h3>SYSCO Sales & Operations Analytics</h3>
+            <p>Analyzed 830 orders and 2,155 order lines generating $1.27M in sales across 91 customers and 77 products. Tracked 95.4% on-time shipments, freight efficiency, and revenue concentration.</p>
+            <div class="tags"><span>Power BI</span><span>DAX</span><span>Supply Chain</span><span>Sales Operations</span><span>Excel</span></div>
           </div>
-          <a class="project-arrow" href="https://github.com/Kerelos-Nakhla/Sysco-Dashboard" target="_blank" rel="noopener" aria-label="View Sysco Dashboard on GitHub">View ↗</a>
+          <a class="project-arrow" href="https://github.com/Kerelos-Nakhla/Sysco-Dashboard" target="_blank" rel="noopener" aria-label="View SYSCO Sales & Operations Analytics on GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> View ↗
+          </a>
         </article>
       </div>
     </section>
 
-    <section id="skills" class="section split-section skills-section reveal">
-      <div class="section-label">03 — TOOL-KIT</div>
-      <div class="section-content">
-        <h2>The tools behind the analysis.</h2>
-        <div class="skill-groups">
-          <div><span>BI & Visualization</span><strong>Power BI · DAX · Power Query · Excel</strong></div>
-          <div><span>Programming & Analysis</span><strong>Python · Pandas · NumPy · Matplotlib · Statistics</strong></div>
-          <div><span>Data & Web</span><strong>SQL · BeautifulSoup · Data Modeling · ETL</strong></div>
-          <div><span>Workflow</span><strong>Git · GitHub · Data Storytelling · Agile</strong></div>
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="section skills-section reveal">
+      <div class="section-label">05 — TECHNICAL SKILLS</div>
+      <div class="section-top">
+        <h2>Core technical stack & analytics competencies.</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>BI & Visualization</h3>
+          <div class="skill-items">
+            <span>Power BI</span>
+            <span>DAX</span>
+            <span>Power Query</span>
+            <span>Excel</span>
+            <span>KPI Development</span>
+            <span>Executive Dashboards</span>
+            <span>Figma UI/UX</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Data Analysis & Programming</h3>
+          <div class="skill-items">
+            <span>SQL</span>
+            <span>Python</span>
+            <span>Pandas</span>
+            <span>NumPy</span>
+            <span>Matplotlib</span>
+            <span>Beautiful Soup</span>
+            <span>EDA & Data Cleaning</span>
+            <span>Statistics</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Data Modeling & Engineering</h3>
+          <div class="skill-items">
+            <span>Dimensional Modeling</span>
+            <span>Star & Galaxy Schemas</span>
+            <span>ETL Pipelines</span>
+            <span>Relationship Design</span>
+            <span>Git & GitHub</span>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- CONTACT SECTION -->
     <section id="contact" class="section contact-section reveal">
-      <div class="contact-copy">
-        <div class="section-label">04 — CONTACT</div>
-        <h2>Let’s turn a dataset into something useful.</h2>
-        <p>Open to entry-level Data Analyst and BI opportunities, collaborations and conversations around analytics.</p>
-      </div>
-      <div class="contact-links">
-        <a href="mailto:kerelosnakhlasaad@gmail.com">Email <span>kerelosnakhlasaad@gmail.com ↗</span></a>
-        <a href="https://www.linkedin.com/in/kerelos-nakhla/" target="_blank" rel="noopener">LinkedIn <span>Connect ↗</span></a>
-        <a href="https://github.com/Kerelos-Nakhla" target="_blank" rel="noopener">GitHub <span>Kerelos-Nakhla ↗</span></a>
+      <div class="contact-box">
+        <div class="section-label" style="text-align:center;">06 — CONTACT</div>
+        <h2>Let's build meaningful analytics together.</h2>
+        <p>Available for Data Analyst, BI Developer, and Power BI roles. Feel free to reach out directly via call, WhatsApp, email, or LinkedIn.</p>
+        
+        <div class="contact-methods">
+          <a class="contact-action-btn" href="tel:+201553035435">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            +201553035435
+          </a>
+          <a class="contact-action-btn" href="tel:+201032395119">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            +201032395119
+          </a>
+          <a class="contact-action-btn" href="mailto:kerelosnakhlasaad@gmail.com">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            kerelosnakhlasaad@gmail.com
+          </a>
+        </div>
+
+        <div class="contact-links" style="margin-top: 24px;">
+          <a class="social-btn magnetic" href="https://www.linkedin.com/in/kerelos-nakhla/" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg> Connect on LinkedIn
+          </a>
+          <a class="social-btn magnetic" href="https://github.com/Kerelos-Nakhla" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> Follow on GitHub
+          </a>
+        </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <span>© 2026 Kerelos Nakhla</span>
-    <span>Data Analyst · BI Developer</span>
-    <a href="#home">Back to top ↑</a>
+    <div>© 2026 Kerelos Nakhla · All rights reserved.</div>
+    <div>Built with clean HTML/CSS & Power BI analytics showcase.</div>
   </footer>
-  <script src="script.js?v=2.5"></script>
+
+  <script src="script.js?v=3.0" defer></script>
 </body>
 </html>
