@@ -59,6 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   galleries.forEach((gallery) => {
     const slides = gallery.querySelectorAll(".gallery-slide");
+    gallery.setAttribute("tabindex", "0");
+    gallery.setAttribute("role", "region");
+    gallery.setAttribute("aria-label", "Project screenshot gallery");
     const total = slides.length;
     if (total <= 1) return;
 
@@ -69,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let current = 0;
     let timer = null;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const showSlide = (idx) => {
       current = (idx + total) % total;
@@ -120,8 +124,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     gallery.addEventListener("mouseenter", stopAuto);
-    gallery.addEventListener("mouseleave", startAuto);
+    gallery.addEventListener("mouseleave", () => {
+      if (!reducedMotion && !document.hidden) startAuto();
+    });
+    gallery.addEventListener("focusin", stopAuto);
+    gallery.addEventListener("focusout", () => {
+      if (!reducedMotion && !document.hidden) startAuto();
+    });
+    gallery.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        prevSlide();
+      }
+    });
 
-    startAuto();
+    if (!reducedMotion) startAuto();
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        stopAuto();
+      } else if (!reducedMotion) {
+        startAuto();
+      }
+    });
   });
 });
