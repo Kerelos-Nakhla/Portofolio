@@ -1,17 +1,1 @@
-// Portfolio Website
-
-console.log("Portfolio Loaded Successfully 🚀");
-
-// Current Year
-
-const year = new Date().getFullYear();
-
-console.log("Year:", year);
-
-// Smooth loading
-
-window.onload = function(){
-
-    document.body.style.opacity = "1";
-
-}
+document.addEventListener("DOMContentLoaded",()=>{document.body.classList.add("ready");});
