@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.getElementById("themeToggle");
 
   // Default to light theme; respect user toggle if set in this session/version
-  const saved = localStorage.getItem("portfolio-theme-v2");
-  const initialTheme = saved || "light";
+  const saved = localStorage.getItem("portfolio-theme-v3");
+  const initialTheme = saved || "dark";
   root.dataset.theme = initialTheme;
 
   const syncThemeUI = () => {
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (text) text.textContent = isDark ? "Light" : "Dark";
     }
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.content = isDark ? "#0f1013" : "#f7f6f2";
+    if (meta) meta.content = isDark ? "#1a1a2e" : "#f7fff7";
   };
   syncThemeUI();
 
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     toggle.addEventListener("click", () => {
       const next = root.dataset.theme === "dark" ? "light" : "dark";
       root.dataset.theme = next;
-      localStorage.setItem("portfolio-theme-v2", next);
+      localStorage.setItem("portfolio-theme-v3", next);
       syncThemeUI();
     });
   }
