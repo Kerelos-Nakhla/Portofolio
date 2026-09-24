@@ -54,20 +54,59 @@ document.addEventListener("DOMContentLoaded", () => {
     if (ring) ring.style.display = "none";
   }
 
-  // Project filters
+  // Project filters + search
   const filterButtons = document.querySelectorAll(".project-filter");
   const projectCards = document.querySelectorAll(".project-card[data-category]");
+  const projectSearch = document.getElementById("projectSearch");
+  const projectSearchClear = document.getElementById("projectSearchClear");
+  const projectFilterStatus = document.getElementById("projectFilterStatus");
+  let activeProjectFilter = "all";
+
+  const applyProjectFilters = () => {
+    const query = (projectSearch?.value || "").trim().toLowerCase();
+    let visibleCount = 0;
+
+    projectCards.forEach((card) => {
+      const categories = (card.dataset.category || "").split(" ");
+      const searchableText = card.textContent.toLowerCase();
+      const matchesFilter = activeProjectFilter === "all" || categories.includes(activeProjectFilter);
+      const matchesSearch = !query || searchableText.includes(query);
+      const show = matchesFilter && matchesSearch;
+      card.classList.toggle("is-filtered-out", !show);
+      if (show) visibleCount += 1;
+    });
+
+    if (projectFilterStatus) {
+      const label = activeProjectFilter === "all" ? "All projects" :
+        activeProjectFilter === "featured" ? "Featured" :
+        activeProjectFilter === "powerbi" ? "Power BI" : "Excel";
+      projectFilterStatus.textContent = query
+        ? `Showing ${visibleCount} of 10 projects · ${label} · “${query}”`
+        : `Showing ${visibleCount} of 10 projects · ${label}`;
+    }
+    if (projectSearchClear) {
+      projectSearchClear.classList.toggle("visible", Boolean(query));
+    }
+  };
+
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      const filter = button.dataset.filter;
+      activeProjectFilter = button.dataset.filter;
       filterButtons.forEach((b) => b.classList.toggle("active", b === button));
-      projectCards.forEach((card) => {
-        const categories = (card.dataset.category || "").split(" ");
-        const show = filter === "all" || categories.includes(filter);
-        card.classList.toggle("is-filtered-out", !show);
-      });
+      applyProjectFilters();
     });
   });
+
+  projectSearch?.addEventListener("input", applyProjectFilters);
+  projectSearchClear?.addEventListener("click", () => {
+    if (projectSearch) {
+      projectSearch.value = "";
+      projectSearch.focus();
+    }
+    applyProjectFilters();
+  });
+
+  applyProjectFilters();
 
   // Interactive Project Galleries
   const galleries = document.querySelectorAll(".project-gallery");
