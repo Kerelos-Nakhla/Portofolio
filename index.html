@@ -324,12 +324,20 @@
         </a>
       </div>
 
-      <div class="project-filters" role="group" aria-label="Filter projects">
-        <button class="project-filter active" data-filter="all" type="button">All Projects <span>10</span></button>
-        <button class="project-filter" data-filter="featured" type="button">Featured <span>6</span></button>
-        <button class="project-filter" data-filter="powerbi" type="button">Power BI <span>7</span></button>
-        <button class="project-filter" data-filter="excel" type="button">Excel <span>3</span></button>
+      <div class="project-controls">
+        <div class="project-filters" role="group" aria-label="Filter projects">
+          <button class="project-filter active" data-filter="all" type="button">All Projects <span>10</span></button>
+          <button class="project-filter" data-filter="featured" type="button">Featured <span>6</span></button>
+          <button class="project-filter" data-filter="powerbi" type="button">Power BI <span>7</span></button>
+          <button class="project-filter" data-filter="excel" type="button">Excel <span>3</span></button>
+        </div>
+        <label class="project-search" for="projectSearch">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10.5 3a7.5 7.5 0 1 0 4.73 13.32l4.22 4.22 1.41-1.41-4.22-4.22A7.5 7.5 0 0 0 10.5 3Zm0 2a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Z"/></svg>
+          <input id="projectSearch" type="search" placeholder="Search projects..." autocomplete="off" aria-label="Search projects">
+          <button class="project-search-clear" id="projectSearchClear" type="button" aria-label="Clear project search">×</button>
+        </label>
       </div>
+      <p class="project-filter-status" id="projectFilterStatus" aria-live="polite">Showing 10 of 10 projects</p>
       <div class="project-list">
         <article class="project-card reveal" data-project="nor" data-category="featured powerbi">
           <div class="project-gallery-wrapper">
