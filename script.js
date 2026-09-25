@@ -206,3 +206,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+
+// --- PROJECT FILTERING LOGIC ---
+document.addEventListener('DOMContentLoaded', () => {
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+
+      projectCards.forEach(card => {
+        const cat = card.getAttribute('data-category') || 'all';
+        if (filter === 'all' || cat.includes(filter)) {
+          card.style.display = '';
+          setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, 50);
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(10px)';
+          setTimeout(() => { card.style.display = 'none'; }, 200);
+        }
+      });
+    });
+  });
+});
