@@ -339,7 +339,19 @@
       </div>
       <p class="project-filter-status" id="projectFilterStatus" aria-live="polite">Showing 10 of 10 projects</p>
       <div class="project-list">
-        <article class="project-card reveal" data-project="nor" data-category="featured powerbi">
+        
+      <!-- Filter Bar -->
+      <div class="project-filter-bar">
+        <button class="filter-btn active" data-filter="all">🌟 All Projects (10)</button>
+        <button class="filter-btn" data-filter="real-estate">🏢 Real Estate & Finance</button>
+        <button class="filter-btn" data-filter="healthcare">🏥 Healthcare</button>
+        <button class="filter-btn" data-filter="telecom">📡 Telecom</button>
+        <button class="filter-btn" data-filter="hr">👥 People Analytics</button>
+        <button class="filter-btn" data-filter="supply-chain">🍽️ Supply Chain</button>
+        <button class="filter-btn" data-filter="sports">🏆 Sports Analytics</button>
+      </div>
+
+      <article class="project-card reveal" data-project="nor" data-category="featured powerbi">
           <div class="project-gallery-wrapper">
             <div class="project-gallery" id="gallery-nor" data-total="14">
               <div class="gallery-slide active" data-caption="Landing">
@@ -399,11 +411,32 @@
             <p class="project-type">REAL ESTATE · POWER BI</p>
             <h3>NŌR Dashboard</h3>
             <p>Analyzed 73,943 units across 8 real estate projects using integrated sales and installment data. Built a Galaxy Schema with 2 fact tables and 6+ dimension tables covering projects, units, customers, payment plans, banks, and dates.</p>
-            <div class="tags"><span>Power BI</span><span>DAX</span><span>Power Query</span><span>Galaxy Schema</span><span>Data Modeling</span></div><div class="project-analysis"><div><strong>Business question</strong><span>How do sales conversion, collections, outstanding balances, and payment channels vary across the 8-project portfolio?</span></div><div><strong>Verified signals</strong><span>73,943 adopted units · 8 projects · Bank vs Cash · Invoiced → Collected → Outstanding</span></div><div><strong>Workflow</strong><span>Power Query → dimensional model → DAX → portfolio, project, installment, and bank analysis</span></div></div>
+            <div class="tags"><span>Power BI</span><span>DAX</span><span>Power Query</span><span>Galaxy Schema</span><span>Data Modeling</span></div><div class="project-kpi-strip">
+                <div class="kpi-chip"><span class="kpi-chip-val">3,088</span><span class="kpi-chip-lbl">Contracts</span></div>
+                <div class="kpi-chip"><span class="kpi-chip-val">21,616</span><span class="kpi-chip-lbl">Installments</span></div>
+                <div class="kpi-chip"><span class="kpi-chip-val">9 Banks</span><span class="kpi-chip-lbl">Financing</span></div>
+                <div class="kpi-chip"><span class="kpi-chip-val">7.0</span><span class="kpi-chip-lbl">Milestones/Unit</span></div>
+              </div>
+            <div class="project-analysis"><div><strong>Business question</strong><span>How do sales conversion, collections, outstanding balances, and payment channels vary across the 8-project portfolio?</span></div><div><strong>Verified signals</strong><span>73,943 adopted units · 8 projects · Bank vs Cash · Invoiced → Collected → Outstanding</span></div><div><strong>Workflow</strong><span>Power Query → dimensional model → DAX → portfolio, project, installment, and bank analysis</span></div></div>
           </div>
           <a class="project-arrow" href="https://github.com/Kerelos-Nakhla/NOR-Dashboarb" target="_blank" rel="noopener" aria-label="View NŌR Dashboard on GitHub">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> View ↗
           </a>
+        
+            <div class="project-actions-bar">
+              <a class="action-btn action-btn-primary" href="https://github.com/Kerelos-Nakhla/NOR-Dashboarb#readme" target="_blank" rel="noopener">
+                📖 Case Study &amp; Analysis ↗
+              </a>
+              <a class="action-btn action-btn-secondary" href="https://raw.githubusercontent.com/Kerelos-Nakhla/NOR-Dashboarb/main/NOR%20Development.pbix" download>
+                📥 Download .pbix
+              </a>
+              <a class="action-btn action-btn-outline" href="https://github.com/Kerelos-Nakhla/NOR-Dashboarb/tree/main/Data" target="_blank" rel="noopener">
+                📂 Explore Dataset
+              </a>
+              <a class="action-btn action-btn-outline" href="https://raw.githubusercontent.com/Kerelos-Nakhla/NOR-Dashboarb/main/Dashboard%20Previews/Model.png" target="_blank" rel="noopener">
+                📐 Data Model
+              </a>
+            </div>
         </article>
 
         <article class="project-card reveal" data-project="road-to-glory" data-category="featured powerbi">
@@ -457,11 +490,32 @@
             <p class="project-type">SPORTS ANALYTICS · PYTHON & POWER BI</p>
             <h3>The Road to Glory</h3>
             <p>Modeled 48 teams, 104 matches, 16 stadiums, 308 goals, and 195 player scoring records for interactive FIFA World Cup 2026 tournament analysis. Scraped and prepared data with Python, Beautiful Soup, and Pandas.</p>
-            <div class="tags"><span>Power BI</span><span>Python</span><span>Beautiful Soup</span><span>Pandas</span><span>DAX</span></div><div class="project-analysis"><div><strong>Business question</strong><span>How can tournament data be collected, cleaned, modeled, and explored across teams, matches, stages, players, and venues?</span></div><div><strong>Verified signals</strong><span>48 teams · 104 matches · 308 goals · 16 stadiums · 195 player-goal records</span></div><div><strong>Workflow</strong><span>Beautiful Soup → Pandas → structured Excel tables → Power BI/DAX → HTML/CSS data experience</span></div></div>
+            <div class="tags"><span>Power BI</span><span>Python</span><span>Beautiful Soup</span><span>Pandas</span><span>DAX</span></div><div class="project-kpi-strip">
+                <div class="kpi-chip"><span class="kpi-chip-val">104</span><span class="kpi-chip-lbl">Matches</span></div>
+                <div class="kpi-chip"><span class="kpi-chip-val">312</span><span class="kpi-chip-lbl">Goals</span></div>
+                <div class="kpi-chip"><span class="kpi-chip-val">3.00</span><span class="kpi-chip-lbl">Goals/Match</span></div>
+                <div class="kpi-chip"><span class="kpi-chip-val">16</span><span class="kpi-chip-lbl">Venues</span></div>
+              </div>
+            <div class="project-analysis"><div><strong>Business question</strong><span>How can tournament data be collected, cleaned, modeled, and explored across teams, matches, stages, players, and venues?</span></div><div><strong>Verified signals</strong><span>48 teams · 104 matches · 308 goals · 16 stadiums · 195 player-goal records</span></div><div><strong>Workflow</strong><span>Beautiful Soup → Pandas → structured Excel tables → Power BI/DAX → HTML/CSS data experience</span></div></div>
           </div>
           <a class="project-arrow" href="https://github.com/Kerelos-Nakhla/The-Road-To-Glory" target="_blank" rel="noopener" aria-label="View The Road to Glory on GitHub">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> View ↗
           </a>
+        
+            <div class="project-actions-bar">
+              <a class="action-btn action-btn-primary" href="https://github.com/Kerelos-Nakhla/The-Road-To-Glory#readme" target="_blank" rel="noopener">
+                📖 Case Study &amp; Analysis ↗
+              </a>
+              <a class="action-btn action-btn-secondary" href="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/THE%20ROAD%20TO%20GLORY.pbix" download>
+                📥 Download .pbix
+              </a>
+              <a class="action-btn action-btn-outline" href="https://github.com/Kerelos-Nakhla/The-Road-To-Glory/tree/main/Data" target="_blank" rel="noopener">
+                📂 Explore Dataset
+              </a>
+              <a class="action-btn action-btn-outline" href="https://raw.githubusercontent.com/Kerelos-Nakhla/The-Road-To-Glory/main/Dashboard%20Previews/Model.png" target="_blank" rel="noopener">
+                📐 Data Model
+              </a>
+            </div>
         </article>
 
         <article class="project-card reveal" data-project="hr-attrition" data-category="featured powerbi">
@@ -515,11 +569,32 @@
             <p class="project-type">PEOPLE ANALYTICS · POWER BI</p>
             <h3>HR Attrition & Risk Intelligence</h3>
             <p>Analyzed 1,470 employee records across 35 attributes to identify workforce attrition patterns. Discovered a 20.1 percentage-point attrition gap between overtime and non-overtime staff (30.5% vs 10.4%).</p>
-            <div class="tags"><span>Power BI</span><span>DAX</span><span>Power Query</span><span>Risk Analysis</span><span>HR Metrics</span></div><div class="project-analysis"><div><strong>Business question</strong><span>Where is employee attrition concentrated, and which workforce segments warrant deeper retention investigation?</span></div><div><strong>Verified signals</strong><span>1,470 employees · 237 left · 16.1% overall attrition · 30.5% overtime attrition</span></div><div><strong>Workflow</strong><span>Power Query → Snowflake-style model → DAX → driver, demographic, career/pay, and risk analysis</span></div></div>
+            <div class="tags"><span>Power BI</span><span>DAX</span><span>Power Query</span><span>Risk Analysis</span><span>HR Metrics</span></div><div class="project-kpi-strip">
+                <div class="kpi-chip"><span class="kpi-chip-val">1,470</span><span class="kpi-chip-lbl">Employees</span></div>
+                <div class="kpi-chip"><span class="kpi-chip-val">16.12%</span><span class="kpi-chip-lbl">Attrition Rate</span></div>
+                <div class="kpi-chip"><span class="kpi-chip-val">3.0x</span><span class="kpi-chip-lbl">OverTime Multiplier</span></div>
+                <div class="kpi-chip"><span class="kpi-chip-val">2-4 Yrs</span><span class="kpi-chip-lbl">Risk Window</span></div>
+              </div>
+            <div class="project-analysis"><div><strong>Business question</strong><span>Where is employee attrition concentrated, and which workforce segments warrant deeper retention investigation?</span></div><div><strong>Verified signals</strong><span>1,470 employees · 237 left · 16.1% overall attrition · 30.5% overtime attrition</span></div><div><strong>Workflow</strong><span>Power Query → Snowflake-style model → DAX → driver, demographic, career/pay, and risk analysis</span></div></div>
           </div>
           <a class="project-arrow" href="https://github.com/Kerelos-Nakhla/HR-Attrition" target="_blank" rel="noopener" aria-label="View HR Attrition & Risk Intelligence on GitHub">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> View ↗
           </a>
+        
+            <div class="project-actions-bar">
+              <a class="action-btn action-btn-primary" href="https://github.com/Kerelos-Nakhla/HR-Attrition#readme" target="_blank" rel="noopener">
+                📖 Case Study &amp; Analysis ↗
+              </a>
+              <a class="action-btn action-btn-secondary" href="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/HR%20Attrition.pbix" download>
+                📥 Download .pbix
+              </a>
+              <a class="action-btn action-btn-outline" href="https://github.com/Kerelos-Nakhla/HR-Attrition/tree/main/Data" target="_blank" rel="noopener">
+                📂 Explore Dataset
+              </a>
+              <a class="action-btn action-btn-outline" href="https://raw.githubusercontent.com/Kerelos-Nakhla/HR-Attrition/main/Dashboard%20Previews/Model.png" target="_blank" rel="noopener">
+                📐 Data Model
+              </a>
+            </div>
         </article>
 
         <article class="project-card reveal" data-project="andalusia" data-category="featured powerbi">
@@ -546,11 +621,32 @@
             <p class="project-type">HEALTHCARE · BUSINESS INTELLIGENCE</p>
             <h3>Andalusia Healthcare Analytics</h3>
             <p>Integrated healthcare operations across 8 tables covering billing, marketing, medical CRM, payments, and departments. Built a dimensional Power BI model connecting financial and patient operational data.</p>
-            <div class="tags"><span>Power BI</span><span>DAX</span><span>Healthcare CRM</span><span>Dimensional Modeling</span><span>KPI Framework</span></div><div class="project-analysis"><div><strong>Business question</strong><span>How does healthcare performance compare with target, baseline, and historical values across Billing, Marketing, and Medical CRM?</span></div><div><strong>Verified signals</strong><span>164 fact rows · Billing actual revenue 575.19M · 79.35% billing target achievement</span></div><div><strong>Workflow</strong><span>Power Query → Galaxy Schema → DAX → executive KPI and performance analysis</span></div></div>
+            <div class="tags"><span>Power BI</span><span>DAX</span><span>Healthcare CRM</span><span>Dimensional Modeling</span><span>KPI Framework</span></div><div class="project-kpi-strip">
+                <div class="kpi-chip"><span class="kpi-chip-val">$575.2M</span><span class="kpi-chip-lbl">Realized Rev</span></div>
+                <div class="kpi-chip"><span class="kpi-chip-val">$724.9M</span><span class="kpi-chip-lbl">Target Budget</span></div>
+                <div class="kpi-chip"><span class="kpi-chip-val">+24.05%</span><span class="kpi-chip-lbl">YoY Growth</span></div>
+                <div class="kpi-chip"><span class="kpi-chip-val">146</span><span class="kpi-chip-lbl">Partitions</span></div>
+              </div>
+            <div class="project-analysis"><div><strong>Business question</strong><span>How does healthcare performance compare with target, baseline, and historical values across Billing, Marketing, and Medical CRM?</span></div><div><strong>Verified signals</strong><span>164 fact rows · Billing actual revenue 575.19M · 79.35% billing target achievement</span></div><div><strong>Workflow</strong><span>Power Query → Galaxy Schema → DAX → executive KPI and performance analysis</span></div></div>
           </div>
           <a class="project-arrow" href="https://github.com/Kerelos-Nakhla/Andalusia-Dashboard" target="_blank" rel="noopener" aria-label="View Andalusia Healthcare Analytics on GitHub">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> View ↗
           </a>
+        
+            <div class="project-actions-bar">
+              <a class="action-btn action-btn-primary" href="https://github.com/Kerelos-Nakhla/Andalusia-Dashboard#readme" target="_blank" rel="noopener">
+                📖 Case Study &amp; Analysis ↗
+              </a>
+              <a class="action-btn action-btn-secondary" href="https://raw.githubusercontent.com/Kerelos-Nakhla/Andalusia-Dashboard/main/Andalusia.pbix" download>
+                📥 Download .pbix
+              </a>
+              <a class="action-btn action-btn-outline" href="https://github.com/Kerelos-Nakhla/Andalusia-Dashboard/tree/main/Data" target="_blank" rel="noopener">
+                📂 Explore Dataset
+              </a>
+              <a class="action-btn action-btn-outline" href="https://raw.githubusercontent.com/Kerelos-Nakhla/Andalusia-Dashboard/main/Dashboard%20Previews/Model.png" target="_blank" rel="noopener">
+                📐 Data Model
+              </a>
+            </div>
         </article>
 
         <article class="project-card reveal" data-project="etisalat" data-category="featured powerbi">
@@ -589,11 +685,32 @@
             <p class="project-type">TELECOM · CUSTOMER ANALYTICS</p>
             <h3>Etisalat Customer Churn & Revenue Risk</h3>
             <p>Analyzed 7,043 telecom customers, identified a 26.54% churn rate, and quantified $2.86M in revenue at risk (17.83% of total revenue) across contract, service, payment, and customer dimensions.</p>
-            <div class="tags"><span>Power BI</span><span>DAX</span><span>Churn Analysis</span><span>Revenue Risk</span><span>Figma</span></div><div class="project-analysis"><div><strong>Business question</strong><span>Which customer, service, contract, and payment dimensions are associated with churn and revenue exposure?</span></div><div><strong>Verified signals</strong><span>7,043 customers · 1,869 churned · 26.54% churn · $2.86M revenue at risk</span></div><div><strong>Workflow</strong><span>Power Query → customer/contract/service/payment model → DAX → churn and revenue-risk analysis</span></div></div>
+            <div class="tags"><span>Power BI</span><span>DAX</span><span>Churn Analysis</span><span>Revenue Risk</span><span>Figma</span></div><div class="project-kpi-strip">
+                <div class="kpi-chip"><span class="kpi-chip-val">7,043</span><span class="kpi-chip-lbl">Accounts</span></div>
+                <div class="kpi-chip"><span class="kpi-chip-val">26.54%</span><span class="kpi-chip-lbl">Churn Rate</span></div>
+                <div class="kpi-chip"><span class="kpi-chip-val">$139.1K</span><span class="kpi-chip-lbl">Monthly Risk</span></div>
+                <div class="kpi-chip"><span class="kpi-chip-val">$2.86M</span><span class="kpi-chip-lbl">Lost Churn Rev</span></div>
+              </div>
+            <div class="project-analysis"><div><strong>Business question</strong><span>Which customer, service, contract, and payment dimensions are associated with churn and revenue exposure?</span></div><div><strong>Verified signals</strong><span>7,043 customers · 1,869 churned · 26.54% churn · $2.86M revenue at risk</span></div><div><strong>Workflow</strong><span>Power Query → customer/contract/service/payment model → DAX → churn and revenue-risk analysis</span></div></div>
           </div>
           <a class="project-arrow" href="https://github.com/Kerelos-Nakhla/Etisalat-Dashboard" target="_blank" rel="noopener" aria-label="View Etisalat Customer Churn & Revenue Risk on GitHub">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> View ↗
           </a>
+        
+            <div class="project-actions-bar">
+              <a class="action-btn action-btn-primary" href="https://github.com/Kerelos-Nakhla/Etisalat-Dashboard#readme" target="_blank" rel="noopener">
+                📖 Case Study &amp; Analysis ↗
+              </a>
+              <a class="action-btn action-btn-secondary" href="https://raw.githubusercontent.com/Kerelos-Nakhla/Etisalat-Dashboard/main/Etisalat.pbix" download>
+                📥 Download .pbix
+              </a>
+              <a class="action-btn action-btn-outline" href="https://github.com/Kerelos-Nakhla/Etisalat-Dashboard/tree/main/Data" target="_blank" rel="noopener">
+                📂 Explore Dataset
+              </a>
+              <a class="action-btn action-btn-outline" href="https://raw.githubusercontent.com/Kerelos-Nakhla/Etisalat-Dashboard/main/Dashboard%20Previews/Model.png" target="_blank" rel="noopener">
+                📐 Data Model
+              </a>
+            </div>
         </article>
 
         <article class="project-card reveal" data-project="sysco" data-category="featured powerbi">
@@ -629,11 +746,32 @@
             <p class="project-type">SUPPLY CHAIN · SALES INTELLIGENCE</p>
             <h3>SYSCO Sales & Operations Analytics</h3>
             <p>Analyzed 830 orders and 2,155 order lines generating $1.27M in sales across 91 customers and 77 products. Tracked 95.4% on-time shipments, freight efficiency, and revenue concentration.</p>
-            <div class="tags"><span>Power BI</span><span>DAX</span><span>Supply Chain</span><span>Sales Operations</span><span>Excel</span></div><div class="project-analysis"><div><strong>Business question</strong><span>Which products, categories, customers, and operational factors drive sales and order performance?</span></div><div><strong>Verified signals</strong><span>830 orders · 2,155 order lines · 91 customers · 77 products · $1.27M sales</span></div><div><strong>Workflow</strong><span>Power Query → dimensional model → time-intelligence DAX → sales, product, customer, and SLA analysis</span></div></div>
+            <div class="tags"><span>Power BI</span><span>DAX</span><span>Supply Chain</span><span>Sales Operations</span><span>Excel</span></div><div class="project-kpi-strip">
+                <div class="kpi-chip"><span class="kpi-chip-val">$1.265M</span><span class="kpi-chip-lbl">Net Sales</span></div>
+                <div class="kpi-chip"><span class="kpi-chip-val">830</span><span class="kpi-chip-lbl">Deliveries</span></div>
+                <div class="kpi-chip"><span class="kpi-chip-val">$1,524</span><span class="kpi-chip-lbl">Avg Order Value</span></div>
+                <div class="kpi-chip"><span class="kpi-chip-val">2,154</span><span class="kpi-chip-lbl">Line Items</span></div>
+              </div>
+            <div class="project-analysis"><div><strong>Business question</strong><span>Which products, categories, customers, and operational factors drive sales and order performance?</span></div><div><strong>Verified signals</strong><span>830 orders · 2,155 order lines · 91 customers · 77 products · $1.27M sales</span></div><div><strong>Workflow</strong><span>Power Query → dimensional model → time-intelligence DAX → sales, product, customer, and SLA analysis</span></div></div>
           </div>
           <a class="project-arrow" href="https://github.com/Kerelos-Nakhla/Sysco-Dashboard" target="_blank" rel="noopener" aria-label="View SYSCO Sales & Operations Analytics on GitHub">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> View ↗
           </a>
+        
+            <div class="project-actions-bar">
+              <a class="action-btn action-btn-primary" href="https://github.com/Kerelos-Nakhla/Sysco-Dashboard#readme" target="_blank" rel="noopener">
+                📖 Case Study &amp; Analysis ↗
+              </a>
+              <a class="action-btn action-btn-secondary" href="https://raw.githubusercontent.com/Kerelos-Nakhla/Sysco-Dashboard/main/Sysco.pbix" download>
+                📥 Download .pbix
+              </a>
+              <a class="action-btn action-btn-outline" href="https://github.com/Kerelos-Nakhla/Sysco-Dashboard/tree/main/Data" target="_blank" rel="noopener">
+                📂 Explore Dataset
+              </a>
+              <a class="action-btn action-btn-outline" href="https://raw.githubusercontent.com/Kerelos-Nakhla/Sysco-Dashboard/main/Dashboard%20Previews/Model.png" target="_blank" rel="noopener">
+                📐 Data Model
+              </a>
+            </div>
         </article>
         <article class="project-card reveal" data-project="customer-region" data-category="excel">
           <div class="project-gallery-wrapper">
