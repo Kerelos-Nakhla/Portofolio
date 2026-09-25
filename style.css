@@ -2282,3 +2282,136 @@ body {
   .project-filter { min-height: 38px !important; padding: 0 12px !important; }
   .project-search { height: 46px !important; }
 }
+
+
+/* ===================================================
+   PORTFOLIO UPGRADE: Functional Buttons, Filters & KPIs
+   =================================================== */
+
+/* Filter Bar */
+.project-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 24px 0 36px;
+  justify-content: flex-start;
+}
+
+.filter-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-muted, #a0a0b0);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-btn:hover {
+  background: rgba(78, 205, 196, 0.12);
+  color: #4ECDC4;
+  border-color: rgba(78, 205, 196, 0.35);
+  transform: translateY(-1px);
+}
+
+.filter-btn.active {
+  background: #4ECDC4;
+  color: #0d0d1a;
+  border-color: #4ECDC4;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(78, 205, 196, 0.3);
+}
+
+/* Card KPI Strip */
+.project-kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 8px;
+  margin: 16px 0;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.kpi-chip {
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-chip-val {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #4ECDC4;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.kpi-chip-lbl {
+  font-size: 0.72rem;
+  color: #8e8e9e;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+/* Functional Action Buttons */
+.project-actions-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.action-btn-primary {
+  background: #4ECDC4;
+  color: #0f0f1c !important;
+}
+
+.action-btn-primary:hover {
+  background: #3eb8af;
+  box-shadow: 0 4px 14px rgba(78, 205, 196, 0.35);
+  transform: translateY(-2px);
+}
+
+.action-btn-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: #e2e2ec !important;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.action-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.action-btn-outline {
+  background: transparent;
+  color: #a0a0b8 !important;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.action-btn-outline:hover {
+  color: #4ECDC4 !important;
+  border-color: #4ECDC4;
+  transform: translateY(-2px);
+}
