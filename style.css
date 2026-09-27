@@ -2444,9 +2444,10 @@ body {
 }
 
 .preloader-video.fade-out {
-  transform: translateY(-100%);
-  opacity: 0;
-  pointer-events: none;
+  transform: translateY(-100%) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 .preloader-header, .preloader-footer {
