@@ -465,7 +465,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Apply the initial state and keep filtering deterministic.\n  applyProjectFilters();\n\n  // One delegated handler controls all project filter buttons.\n  document.querySelector(".project-filters")?.addEventListener("click", (event) => {\n    const button = event.target.closest(".project-filter");\n    if (!button) return;\n    event.preventDefault();\n    activeProjectFilter = button.dataset.filter || "all";\n    filterButtons.forEach((b) => b.classList.toggle("active", b === button));\n    applyProjectFilters();\n  });\n\n  // Interactive Project Galleries
+  // Apply the initial state and keep filtering deterministic.
+  applyProjectFilters();
+
+  // One delegated handler controls all project filter buttons.
+  document.querySelector(".project-filters")?.addEventListener("click", (event) => {
+    const button = event.target.closest(".project-filter");
+    if (!button) return;
+    event.preventDefault();
+    activeProjectFilter = button.dataset.filter || "all";
+    filterButtons.forEach((b) => b.classList.toggle("active", b === button));
+    applyProjectFilters();
+  });
+
+  // Interactive Project Galleries
   const galleries = document.querySelectorAll(".project-gallery");
 
   galleries.forEach((gallery) => {
