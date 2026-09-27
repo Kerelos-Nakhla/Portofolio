@@ -3701,3 +3701,96 @@ main{
     justify-content: center;
   }
 }
+
+
+/* ==========================================================================
+   LAUNCH FIX — HERO MUST START BELOW THE FIXED NAV
+   ========================================================================== */
+:root{--launch-header:76px}
+
+#home.hero{
+  margin-top:var(--launch-header);
+  min-height:calc(100svh - var(--launch-header));
+  height:calc(100svh - var(--launch-header));
+  padding-top:48px;
+  padding-bottom:48px;
+  align-items:center;
+}
+
+#home .hero-copy{
+  grid-column:1;
+  grid-row:1;
+  align-self:center;
+  justify-self:start;
+}
+
+#home .hero-profile{
+  grid-column:2;
+  grid-row:1;
+  align-self:center;
+  justify-self:end;
+  position:relative;
+  z-index:3;
+}
+
+/* Dedicated visual zone behind the profile: keeps the photo/background on the right. */
+#home .hero-profile::before{
+  content:"";
+  position:absolute;
+  width:clamp(360px,28vw,520px);
+  height:clamp(360px,28vw,520px);
+  right:clamp(-70px,-4vw,-24px);
+  top:50%;
+  transform:translateY(-50%);
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(78,205,196,.16) 0 30%, rgba(78,205,196,.07) 48%, transparent 70%),
+    radial-gradient(circle at 70% 35%, rgba(255,107,107,.12), transparent 55%);
+  border:1px solid rgba(78,205,196,.16);
+  box-shadow:0 0 80px rgba(78,205,196,.08);
+  z-index:-1;
+  pointer-events:none;
+}
+
+#home .profile-frame{
+  position:relative;
+  z-index:2;
+}
+
+@media(max-width:900px){
+  :root{--launch-header:68px}
+  #home.hero{
+    margin-top:var(--launch-header);
+    min-height:calc(100svh - var(--launch-header));
+    height:auto;
+    padding-top:42px;
+    padding-bottom:64px;
+  }
+  #home .hero-profile{
+    grid-column:1;
+    grid-row:1;
+    justify-self:center;
+  }
+  #home .hero-copy{
+    grid-column:1;
+    grid-row:2;
+    justify-self:center;
+  }
+  #home .hero-profile::before{
+    width:310px;
+    height:310px;
+    right:50%;
+    transform:translate(50%,-50%);
+  }
+}
+
+@media(max-width:560px){
+  #home.hero{
+    padding-top:34px;
+    padding-bottom:54px;
+  }
+  #home .hero-profile::before{
+    width:250px;
+    height:250px;
+  }
+}
