@@ -429,7 +429,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const matchesFilter = activeProjectFilter === "all" || categories.includes(activeProjectFilter);
       const matchesSearch = terms.length === 0 || terms.every((term) => searchableText.includes(term));
       const show = matchesFilter && matchesSearch;
-      card.classList.toggle("is-filtered-out", !show);
+      card.classList.toggle("is-filtered-out", !show);\n      card.hidden = !show;
       if (show) visibleCount += 1;
     });
 
@@ -465,7 +465,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Ensure the Featured filter always maps to the six starred portfolio projects.\n  // The first six project cards are tagged data-category="featured" in the HTML.\n  applyProjectFilters();\n\n  // Defensive delegated handler: keeps filter buttons working even if other UI\n  // interactions or reveal animations rebind parts of the page.\n  document.querySelector(".project-filters")?.addEventListener("click", (event) => {\n    const button = event.target.closest(".project-filter");\n    if (!button) return;\n    const filter = button.dataset.filter || "all";\n    activeProjectFilter = filter;\n    filterButtons.forEach((b) => b.classList.toggle("active", b === button));\n    applyProjectFilters();\n  });\n\n  // Interactive Project Galleries
+  // Apply the initial state and keep filtering deterministic.\n  applyProjectFilters();\n\n  // One delegated handler controls all project filter buttons.\n  document.querySelector(".project-filters")?.addEventListener("click", (event) => {\n    const button = event.target.closest(".project-filter");\n    if (!button) return;\n    event.preventDefault();\n    activeProjectFilter = button.dataset.filter || "all";\n    filterButtons.forEach((b) => b.classList.toggle("active", b === button));\n    applyProjectFilters();\n  });\n\n  // Interactive Project Galleries
   const galleries = document.querySelectorAll(".project-gallery");
 
   galleries.forEach((gallery) => {
