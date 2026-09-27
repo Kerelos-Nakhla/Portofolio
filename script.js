@@ -221,8 +221,8 @@ document.addEventListener("DOMContentLoaded", () => {
         activeProjectFilter === "featured" ? "Featured" :
         activeProjectFilter === "powerbi" ? "Power BI" : "Excel";
       projectFilterStatus.textContent = query
-        ? 
-        : ;
+        ? `${visibleCount} project${visibleCount === 1 ? "" : "s"} match "${query}"`
+        : `${visibleCount} project${visibleCount === 1 ? "" : "s"} shown`;
     }
     if (projectSearchClear) {
       projectSearchClear.classList.toggle("visible", Boolean(query));
