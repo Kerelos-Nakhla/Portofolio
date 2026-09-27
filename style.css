@@ -3794,3 +3794,68 @@ main{
     height:250px;
   }
 }
+
+
+/* FINAL PROFILE CIRCLE CALIBRATION — keep the entire visual inside the right column */
+#home.hero{
+  overflow:visible !important;
+}
+
+#home .hero-profile{
+  position:relative;
+  overflow:visible;
+  justify-self:end;
+  align-self:center;
+  min-width:0;
+}
+
+#home .hero-profile::before{
+  width:clamp(380px,30vw,500px);
+  height:clamp(380px,30vw,500px);
+  right:0;
+  top:50%;
+  transform:translateY(-50%);
+  border-radius:50%;
+  box-sizing:border-box;
+  z-index:0;
+}
+
+#home .profile-frame{
+  position:relative;
+  z-index:2;
+  flex:0 0 auto;
+}
+
+#home .profile-caption{
+  position:relative;
+  z-index:3;
+}
+
+@media (max-width:1180px){
+  #home .hero-profile::before{
+    width:360px;
+    height:360px;
+    right:0;
+  }
+}
+
+@media (max-width:900px){
+  #home .hero-profile{
+    justify-self:center;
+    width:100%;
+  }
+
+  #home .hero-profile::before{
+    width:310px;
+    height:310px;
+    right:50%;
+    transform:translate(50%,-50%);
+  }
+}
+
+@media (max-width:560px){
+  #home .hero-profile::before{
+    width:250px;
+    height:250px;
+  }
+}
