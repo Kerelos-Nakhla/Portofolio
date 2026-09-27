@@ -374,3 +374,31 @@ window.addEventListener('keydown', (e) => {
     window.closeCertificate();
   }
 });
+
+
+/* Editorial navigation state */
+document.addEventListener("DOMContentLoaded", () => {
+  const navLinks = Array.from(document.querySelectorAll(".site-header nav a"));
+  const sections = navLinks
+    .map(link => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+
+  if (!navLinks.length || !sections.length || !("IntersectionObserver" in window)) return;
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      navLinks.forEach((link) => {
+        link.classList.toggle(
+          "active",
+          link.getAttribute("href") === "#" + entry.target.id
+        );
+      });
+    });
+  }, {
+    rootMargin: "-35% 0px -55% 0px",
+    threshold: 0
+  });
+
+  sections.forEach(section => sectionObserver.observe(section));
+});
