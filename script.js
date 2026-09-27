@@ -133,13 +133,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Scroll Progress Bar
   const progressBar = document.querySelector(".scroll-progress");
-  window.addEventListener("scroll", () => {
+  let progressTicking = false;
+  const updateScrollProgress = () => {
+    progressTicking = false;
     const total = document.documentElement.scrollHeight - window.innerHeight;
     if (total > 0 && progressBar) {
-      const progress = (window.scrollY / total) * 100;
+      const progress = Math.min(100, Math.max(0, (window.scrollY / total) * 100));
       progressBar.style.width = progress + "%";
     }
+  };
+  window.addEventListener("scroll", () => {
+    if (!progressTicking) {
+      progressTicking = true;
+      requestAnimationFrame(updateScrollProgress);
+    }
   }, { passive: true });
+  updateScrollProgress();
+
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const id = link.getAttribute("href");
+      if (!id || id === "#") return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+      history.replaceState(null, "", id);
+    });
+  });
 
   // 2. Custom Interactive Cursor with smooth interpolation
   const dot = document.querySelector(".cursor-dot");
@@ -202,15 +224,32 @@ document.addEventListener("DOMContentLoaded", () => {
   const projectFilterStatus = document.getElementById("projectFilterStatus");
   let activeProjectFilter = "all";
 
+  const normalizeSearch = (value = "") =>
+    value.toString().toLowerCase()
+      .normalize("NFD").replace(/[\\u0300-\\u036f]/g, "")
+      .replace(/[^a-z0-9\\s#&-]/g, " ").replace(/\\s+/g, " ").trim();
+
+  const projectSearchIndex = new Map([...projectCards].map((card) => {
+    const title = card.querySelector(".project-title, h3, h4")?.textContent || "";
+    const description = card.querySelector(".project-description, .project-card-body, p")?.textContent || "";
+    const altText = [...card.querySelectorAll("img")].map((img) => img.alt || "").join(" ");
+    return [card, normalizeSearch([
+      card.dataset.project || "", card.dataset.category || "", title,
+      description, altText, card.textContent || ""
+    ].join(" "))];
+  }));
+
   const applyProjectFilters = () => {
-    const query = (projectSearch?.value || "").trim().toLowerCase();
+    const rawQuery = projectSearch?.value || "";
+    const query = normalizeSearch(rawQuery);
+    const terms = query ? query.split(" ").filter(Boolean) : [];
     let visibleCount = 0;
 
     projectCards.forEach((card) => {
-      const categories = (card.dataset.category || "").split(" ");
-      const searchableText = card.textContent.toLowerCase();
+      const categories = (card.dataset.category || "").split(/\\s+/);
+      const searchableText = projectSearchIndex.get(card) || "";
       const matchesFilter = activeProjectFilter === "all" || categories.includes(activeProjectFilter);
-      const matchesSearch = !query || searchableText.includes(query);
+      const matchesSearch = terms.length === 0 || terms.every((term) => searchableText.includes(term));
       const show = matchesFilter && matchesSearch;
       card.classList.toggle("is-filtered-out", !show);
       if (show) visibleCount += 1;
@@ -221,17 +260,16 @@ document.addEventListener("DOMContentLoaded", () => {
         activeProjectFilter === "featured" ? "Featured" :
         activeProjectFilter === "powerbi" ? "Power BI" : "Excel";
       projectFilterStatus.textContent = query
-        ? `${visibleCount} project${visibleCount === 1 ? "" : "s"} match "${query}"`
-        : `${visibleCount} project${visibleCount === 1 ? "" : "s"} shown`;
+        ? visibleCount + " project" + (visibleCount === 1 ? "" : "s") + " match \"" + rawQuery.trim() + "\""
+        : label + " · " + visibleCount + " project" + (visibleCount === 1 ? "" : "s") + " shown";
     }
-    if (projectSearchClear) {
-      projectSearchClear.classList.toggle("visible", Boolean(query));
-    }
+
+    projectSearchClear?.classList.toggle("visible", Boolean(query));
   };
 
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      activeProjectFilter = button.dataset.filter;
+      activeProjectFilter = button.dataset.filter || "all";
       filterButtons.forEach((b) => b.classList.toggle("active", b === button));
       applyProjectFilters();
     });
@@ -239,11 +277,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   projectSearch?.addEventListener("input", applyProjectFilters);
   projectSearchClear?.addEventListener("click", () => {
-    if (projectSearch) {
-      projectSearch.value = "";
-      projectSearch.focus();
-    }
+    if (projectSearch) { projectSearch.value = ""; projectSearch.focus(); }
     applyProjectFilters();
+  });
+  projectSearch?.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      projectSearch.value = "";
+      applyProjectFilters();
+    }
   });
 
   applyProjectFilters();
