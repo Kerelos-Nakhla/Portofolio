@@ -429,7 +429,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const matchesFilter = activeProjectFilter === "all" || categories.includes(activeProjectFilter);
       const matchesSearch = terms.length === 0 || terms.every((term) => searchableText.includes(term));
       const show = matchesFilter && matchesSearch;
-      card.classList.toggle("is-filtered-out", !show);\n      card.hidden = !show;
+      card.classList.toggle("is-filtered-out", !show);
+      card.hidden = !show;
       if (show) visibleCount += 1;
     });
 
