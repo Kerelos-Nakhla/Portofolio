@@ -3390,3 +3390,53 @@ nav a.active::after {
   .contact-methods, .contact-links { gap: 12px; }
   .contact-action-btn, .contact-links .social-btn { width: 100%; min-height: 50px; justify-content: center; }
 }
+
+/* ==========================================================================
+   LIVE DATA BACKGROUND
+   Subtle animated network that stays behind the portfolio content.
+   ========================================================================== */
+.live-background {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .72;
+  mix-blend-mode: screen;
+}
+
+[data-theme="light"] .live-background {
+  opacity: .38;
+  mix-blend-mode: multiply;
+}
+
+.site-header,
+main,
+.skip-link,
+.scroll-progress {
+  position: relative;
+  z-index: 1;
+}
+
+.site-header {
+  z-index: 50;
+}
+
+#home {
+  position: relative;
+  isolation: isolate;
+}
+
+#home > .hero-chart-backdrop,
+#home > .hero-copy,
+#home > .hero-profile {
+  position: relative;
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-background {
+    display: none;
+  }
+}
