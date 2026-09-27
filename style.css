@@ -3859,3 +3859,30 @@ main{
     height:250px;
   }
 }
+
+
+/* FINAL POLISH — profile visual + certificate density + project filter */
+#home .hero-profile::before{
+  width:clamp(330px,24vw,410px) !important;
+  height:clamp(330px,24vw,410px) !important;
+  right:0 !important;
+  top:50% !important;
+  transform:translateY(-50%) !important;
+}
+#home .profile-frame{
+  width:clamp(240px,18vw,300px) !important;
+  height:clamp(240px,18vw,300px) !important;
+}
+.certs-grid{
+  grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+  gap:18px !important;
+}
+@media(max-width:1200px){
+  .certs-grid{grid-template-columns:repeat(3,minmax(0,1fr)) !important;}
+}
+@media(max-width:760px){
+  .certs-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+}
+@media(max-width:520px){
+  .certs-grid{grid-template-columns:1fr !important;}
+}
