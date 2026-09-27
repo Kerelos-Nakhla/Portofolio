@@ -182,6 +182,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
       ctx.clearRect(0, 0, width, height);
 
+      // Subtle analytical chart layer behind the portfolio content.
+      const chartAlpha = document.documentElement.dataset.theme === "light" ? 0.045 : 0.075;
+      const gridStep = Math.max(54, Math.min(84, width / 20));
+      ctx.save();
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "rgba(78,205,196," + chartAlpha + ")";
+      for (let x = 0; x <= width; x += gridStep) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+      }
+      for (let y = 0; y <= height; y += gridStep) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
+      }
+
+      const chartY = height * 0.24, chartW = Math.min(width * 0.30, 430), chartH = Math.min(height * 0.18, 150), chartX = width * 0.055;
+      const drift = Math.sin(now * 0.00022) * 10;
+
+      ctx.beginPath();
+      for (let i = 0; i <= 12; i++) {
+        const px = chartX + (i / 12) * chartW;
+        const py = chartY + chartH * (0.70 - 0.20 * Math.sin(i * 0.8 + now * 0.00018) - i * 0.018) + drift;
+        i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+      }
+      ctx.strokeStyle = "rgba(78,205,196," + (chartAlpha * 3.2) + ")";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      const barBaseX = width * 0.72, barBaseY = height * 0.72, barW = Math.min(width * 0.025, 28);
+      const bars = [0.34, 0.52, 0.43, 0.68, 0.58, 0.82, 0.64, 0.76];
+      bars.forEach((v, i) => {
+        const h = chartH * v;
+        const pulse = 1 + Math.sin(now * 0.0008 + i) * 0.025;
+        ctx.fillStyle = i % 3 === 0 ? "rgba(255,107,107," + (chartAlpha * 2.3) + ")" : "rgba(78,205,196," + (chartAlpha * 2.3) + ")";
+        ctx.fillRect(barBaseX + i * (barW + 12), barBaseY - h * pulse, barW, h * pulse);
+      });
+
+      const sparkX = width * 0.55, sparkY = height * 0.82, sparkW = Math.min(width * 0.26, 360), sparkH = Math.min(height * 0.10, 80);
+      ctx.beginPath();
+      for (let i = 0; i <= 20; i++) {
+        const px = sparkX + (i / 20) * sparkW;
+        const py = sparkY - sparkH * (0.42 + 0.24 * Math.sin(i * 0.72) + 0.12 * Math.sin(i * 1.9 + now * 0.00035));
+        i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+      }
+      ctx.strokeStyle = "rgba(255,107,107," + (chartAlpha * 2.8) + ")";
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      ctx.restore();
+
       const grad = ctx.createRadialGradient(
         width * (.28 + mouseX * .10),
         height * (.20 + mouseY * .08),
