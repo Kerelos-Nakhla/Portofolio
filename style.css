@@ -39,6 +39,10 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
 
 body {
@@ -356,7 +360,13 @@ nav a:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 28%;
   display: block;
+  transform: scale(1.015);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-profile:hover .profile-frame img {
+  transform: scale(1.045);
 }
 
 .profile-caption {
@@ -738,8 +748,10 @@ nav a:hover {
   border-radius: 24px;
   padding: clamp(36px, 6vw, 64px);
   text-align: center;
-  max-width: 760px;
+  width: 100%;
+  max-width: 1040px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .contact-box h2 {
@@ -782,9 +794,21 @@ footer {
 
 /* Reveal on scroll */
 .reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  will-change: opacity, transform;
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.active {
   opacity: 1;
-  transform: none;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(0, 0, 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.active {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* Responsive adjustments */
@@ -1139,16 +1163,32 @@ footer {
 
 /* Contact Methods */
 .contact-methods {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
-  justify-content: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+.contact-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  width: 100%;
+  max-width: 620px;
+  margin: 24px auto 0 !important;
+  align-items: stretch;
 }
 
 .contact-action-btn {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  min-width: 0;
+  min-height: 52px;
+  text-align: center;
   padding: 12px 22px;
   border-radius: 9999px;
   background: var(--surface-2);
@@ -2003,7 +2043,7 @@ body {
   transition: .2s ease;
 }
 .project-search:focus-within {
-  border-color: var(--accent-1);
+  border-color: var(--accent-2);
   box-shadow: 0 0 0 3px rgba(78,205,196,.10);
 }
 .project-search svg {
@@ -3318,4 +3358,35 @@ nav a.active::after {
     opacity: 1;
     transform: none;
   }
+}
+
+/* FINAL POLISH */
+.project-search {
+  transition: border-color .25s ease, box-shadow .25s ease, transform .25s cubic-bezier(.16,1,.3,1), background .25s ease !important;
+}
+.project-search:hover {
+  border-color: var(--accent-2) !important;
+  transform: translateY(-1px);
+}
+.project-search:focus-within {
+  border-color: var(--accent-2) !important;
+  box-shadow: 0 0 0 4px var(--accent-2-soft) !important;
+  transform: translateY(-1px);
+}
+.project-search input { caret-color: var(--accent); }
+.project-search input::-webkit-search-cancel-button { display: none; }
+.project-card {
+  transition: opacity .35s ease, transform .55s cubic-bezier(.16,1,.3,1), box-shadow .45s cubic-bezier(.16,1,.3,1), border-color .3s ease;
+}
+@media (max-width: 900px) {
+  .contact-methods { grid-template-columns: 1fr; }
+  .contact-links { grid-template-columns: 1fr; max-width: 520px; }
+  .hero { gap: 42px; }
+  .hero-profile { justify-self: center; }
+}
+@media (max-width: 680px) {
+  .profile-frame { width: 190px; height: 190px; }
+  .contact-box { padding: 32px 20px; }
+  .contact-methods, .contact-links { gap: 12px; }
+  .contact-action-btn, .contact-links .social-btn { width: 100%; min-height: 50px; justify-content: center; }
 }
