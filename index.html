@@ -38,7 +38,57 @@
       <span>Data Analyst &amp; BI Developer</span>
       <span>Cairo, EG</span>
     </div>
-  </div>
+  </div
+  <script>
+  (function() {
+    var p = document.getElementById('preloader');
+    var c = document.getElementById('preloader-counter');
+    var b = document.getElementById('preloader-bar-fill');
+    var s = document.getElementById('preloader-status');
+    if (!p) return;
+
+    var dismissed = false;
+    function hide() {
+      if (dismissed) return;
+      dismissed = true;
+      if (c) c.textContent = '100%';
+      if (b) b.style.width = '100%';
+      if (s) s.textContent = 'EXPERIENCE READY';
+      p.classList.add('fade-out');
+      p.style.transform = 'translateY(-100%)';
+      p.style.opacity = '0';
+      p.style.pointerEvents = 'none';
+      document.body.style.overflow = '';
+      setTimeout(function() { p.style.display = 'none'; }, 700);
+      var reveals = document.querySelectorAll('#home .reveal, .reveal');
+      for (var i = 0; i < reveals.length; i++) {
+        var r = reveals[i].getBoundingClientRect();
+        if (r.top < window.innerHeight) reveals[i].classList.add('active');
+      }
+    }
+
+    p.addEventListener('click', hide);
+    setTimeout(hide, 1600); // Hard fallback
+
+    var count = 0;
+    var timer = setInterval(function() {
+      count += 3;
+      if (count > 100) count = 100;
+      if (c) c.textContent = (count < 10 ? '0' + count : count) + '%';
+      if (b) b.style.width = count + '%';
+      if (s) {
+        if (count > 80) s.textContent = 'READY';
+        else if (count > 50) s.textContent = 'PREPARING MOTION & ANALYTICS...';
+        else if (count > 25) s.textContent = 'LOADING DASHBOARDS...';
+      }
+      if (count >= 100) {
+        clearInterval(timer);
+        setTimeout(hide, 200);
+      }
+    }, 28);
+  })();
+  </script>
+>
     </div>
     <div class="preloader-footer">
       <span>Data Analyst & BI Developer</span>
