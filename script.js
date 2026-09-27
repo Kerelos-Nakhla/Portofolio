@@ -1,44 +1,74 @@
+/* ==========================================================================
+   Kerelos Nakhla — Portfolio JavaScript
+   Video-Inspired Preloader, Cursor, Motion Reveals, and Interactive Features
+   ========================================================================== */
 
-// Video-Inspired Preloader Percentage Counter
+// 1. Video-Inspired Preloader & Curtain Reveal
 (function() {
   const preloader = document.getElementById('preloader');
   const counterEl = document.getElementById('preloader-counter');
   const fillEl = document.getElementById('preloader-bar-fill');
+  const statusEl = document.getElementById('preloader-status');
 
   if (!preloader || !counterEl) return;
 
+  // Prevent scroll during initial load
+  document.body.style.overflow = 'hidden';
+
   let currentPercent = 0;
-  const targetPercent = 100;
-  const duration = 1400; // ms
+  const duration = 1600; // ms
   const startTime = performance.now();
+
+  const statusMessages = [
+    { threshold: 0, text: 'INITIALIZING EXPERIENCE...' },
+    { threshold: 30, text: 'LOADING INTERACTIVE DASHBOARDS...' },
+    { threshold: 65, text: 'PREPARING MOTION & ANALYTICS...' },
+    { threshold: 92, text: 'EXPERIENCE READY' }
+  ];
 
   function updateLoader(currentTime) {
     const elapsed = currentTime - startTime;
     const progress = Math.min(elapsed / duration, 1);
     
-    // Ease-out cubic curve
-    const easedProgress = 1 - Math.pow(1 - progress, 3);
-    currentPercent = Math.floor(easedProgress * targetPercent);
+    // Smooth cubic easing for percentage count
+    const eased = 1 - Math.pow(1 - progress, 3);
+    currentPercent = Math.floor(eased * 100);
 
-    if (counterEl) counterEl.textContent = `${currentPercent}%`;
-    if (fillEl) fillEl.style.width = `${currentPercent}%`;
+    const formatted = currentPercent < 10 ? '0' + currentPercent + '%' : currentPercent + '%';
+    counterEl.textContent = formatted;
+    if (fillEl) fillEl.style.width = currentPercent + '%';
+
+    if (statusEl) {
+      for (let i = statusMessages.length - 1; i >= 0; i--) {
+        if (currentPercent >= statusMessages[i].threshold) {
+          statusEl.textContent = statusMessages[i].text;
+          break;
+        }
+      }
+    }
 
     if (progress < 1) {
       requestAnimationFrame(updateLoader);
     } else {
       setTimeout(() => {
         preloader.classList.add('fade-out');
-      }, 250);
+        document.body.style.overflow = '';
+        
+        // Trigger initial reveal on hero
+        const initialReveals = document.querySelectorAll('#home .reveal');
+        initialReveals.forEach(el => el.classList.add('active'));
+      }, 280);
     }
   }
 
   requestAnimationFrame(updateLoader);
 })();
+
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.documentElement;
   const toggle = document.getElementById("themeToggle");
 
-  // Default to light theme; respect user toggle if set in this session/version
+  // Theme Management
   const saved = localStorage.getItem("portfolio-theme-v3");
   const initialTheme = saved || "dark";
   root.dataset.theme = initialTheme;
@@ -75,20 +105,58 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, { passive: true });
 
-  // Custom Cursor
+  // 2. Custom Interactive Cursor with smooth interpolation
   const dot = document.querySelector(".cursor-dot");
   const ring = document.querySelector(".cursor-ring");
+
   if (dot && ring && window.matchMedia("(pointer: fine)").matches) {
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+
     window.addEventListener("mousemove", (e) => {
-      dot.style.left = e.clientX + "px";
-      dot.style.top = e.clientY + "px";
-      ring.style.left = e.clientX + "px";
-      ring.style.top = e.clientY + "px";
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.left = mouseX + "px";
+      dot.style.top = mouseY + "px";
     }, { passive: true });
+
+    function renderRing() {
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      ring.style.left = ringX + "px";
+      ring.style.top = ringY + "px";
+      requestAnimationFrame(renderRing);
+    }
+    requestAnimationFrame(renderRing);
+
+    // Hover effect on interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .project-card, .certificate-card, .gallery-nav-btn, .project-filter, .filter-btn');
+    interactiveElements.forEach((el) => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
   } else {
     if (dot) dot.style.display = "none";
     if (ring) ring.style.display = "none";
   }
+
+  // 3. Scroll Reveal Animations (IntersectionObserver)
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -30px 0px' }
+  );
+
+  reveals.forEach((el) => revealObserver.observe(el));
 
   // Project filters + search
   const filterButtons = document.querySelectorAll(".project-filter");
@@ -117,8 +185,8 @@ document.addEventListener("DOMContentLoaded", () => {
         activeProjectFilter === "featured" ? "Featured" :
         activeProjectFilter === "powerbi" ? "Power BI" : "Excel";
       projectFilterStatus.textContent = query
-        ? `Showing ${visibleCount} of 10 projects · ${label} · “${query}”`
-        : `Showing ${visibleCount} of 10 projects · ${label}`;
+        ? 
+        : ;
     }
     if (projectSearchClear) {
       projectSearchClear.classList.toggle("visible", Boolean(query));
@@ -243,29 +311,30 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// Certificate Lightbox Modal
+window.openCertificate = function(imgSrc, title) {
+  const modal = document.getElementById('cert-modal');
+  const modalImg = document.getElementById('cert-modal-img');
+  const modalTitle = document.getElementById('cert-modal-title');
 
-// --- PROJECT FILTERING LOGIC ---
-document.addEventListener('DOMContentLoaded', () => {
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-card');
+  if (modal && modalImg && modalTitle) {
+    modalImg.src = imgSrc;
+    modalTitle.textContent = title;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+};
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.getAttribute('data-filter');
+window.closeCertificate = function() {
+  const modal = document.getElementById('cert-modal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+};
 
-      projectCards.forEach(card => {
-        const cat = card.getAttribute('data-category') || 'all';
-        if (filter === 'all' || cat.includes(filter)) {
-          card.style.display = '';
-          setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, 50);
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(10px)';
-          setTimeout(() => { card.style.display = 'none'; }, 200);
-        }
-      });
-    });
-  });
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    window.closeCertificate();
+  }
 });
