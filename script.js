@@ -131,6 +131,137 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Live animated data-network background
+  (function initLiveBackground() {
+    const canvas = document.getElementById("liveBackground");
+    if (!canvas || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let width = 0;
+    let height = 0;
+    let dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+    let nodes = [];
+    let mouseX = 0.5;
+    let mouseY = 0.5;
+    let raf = 0;
+    let lastTime = performance.now();
+
+    const getTheme = () =>
+      document.documentElement.dataset.theme === "light"
+        ? { a: [78,205,196], b: [255,107,107], line: 0.10, glow: 0.12 }
+        : { a: [78,205,196], b: [255,107,107], line: 0.16, glow: 0.18 };
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const count = Math.max(28, Math.min(58, Math.floor((width * height) / 26000)));
+      nodes = Array.from({ length: count }, (_, i) => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - .5) * .16,
+        vy: (Math.random() - .5) * .16,
+        r: 1.1 + Math.random() * 2.2,
+        phase: Math.random() * Math.PI * 2,
+        group: i % 3 === 0 ? 1 : 0
+      }));
+    }
+
+    function draw(now) {
+      const dt = Math.min(32, now - lastTime);
+      lastTime = now;
+      const theme = getTheme();
+
+      ctx.clearRect(0, 0, width, height);
+
+      const grad = ctx.createRadialGradient(
+        width * (.28 + mouseX * .10),
+        height * (.20 + mouseY * .08),
+        0,
+        width * .5,
+        height * .45,
+        Math.max(width, height) * .72
+      );
+      grad.addColorStop(0, "rgba(" + theme.a.join(",") + "," + theme.glow + ")");
+      grad.addColorStop(.45, "rgba(" + theme.b.join(",") + ",0.035)");
+      grad.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, width, height);
+
+      nodes.forEach((n) => {
+        n.x += n.vx * dt;
+        n.y += n.vy * dt;
+
+        if (n.x < -40) n.x = width + 40;
+        if (n.x > width + 40) n.x = -40;
+        if (n.y < -40) n.y = height + 40;
+        if (n.y > height + 40) n.y = -40;
+      });
+
+      const maxDistance = Math.min(155, width * .14);
+
+      for (let i = 0; i < nodes.length; i++) {
+        const a = nodes[i];
+
+        for (let j = i + 1; j < nodes.length; j++) {
+          const b = nodes[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < maxDistance) {
+            const alpha = (1 - dist / maxDistance) * theme.line;
+            const mix = (i + j) % 4 === 0 ? theme.b : theme.a;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = "rgba(" + mix.join(",") + "," + alpha + ")";
+            ctx.lineWidth = .7;
+            ctx.stroke();
+          }
+        }
+      }
+
+      nodes.forEach((n) => {
+        const pulse = .75 + Math.sin(now * .0012 + n.phase) * .25;
+        const color = n.group ? theme.b : theme.a;
+
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r * pulse, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(" + color.join(",") + ",0.48)";
+        ctx.fill();
+
+        if (n.r > 2) {
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r * 4.5, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(" + color.join(",") + ",0.035)";
+          ctx.fill();
+        }
+      });
+
+      raf = requestAnimationFrame(draw);
+    }
+
+    window.addEventListener("resize", resize, { passive: true });
+    window.addEventListener("pointermove", (event) => {
+      mouseX = event.clientX / Math.max(window.innerWidth, 1);
+      mouseY = event.clientY / Math.max(window.innerHeight, 1);
+    }, { passive: true });
+
+    resize();
+    raf = requestAnimationFrame(draw);
+
+    window.addEventListener("pagehide", () => cancelAnimationFrame(raf), { once: true });
+  })();
+
   // Scroll Progress Bar
   const progressBar = document.querySelector(".scroll-progress");
   let progressTicking = false;
