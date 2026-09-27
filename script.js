@@ -3,65 +3,101 @@
    Video-Inspired Preloader, Cursor, Motion Reveals, and Interactive Features
    ========================================================================== */
 
-// 1. Video-Inspired Preloader & Curtain Reveal
-(function() {
+// 1. Rock-Solid Video Preloader & Curtain Reveal
+(function initVideoPreloader() {
   const preloader = document.getElementById('preloader');
   const counterEl = document.getElementById('preloader-counter');
   const fillEl = document.getElementById('preloader-bar-fill');
   const statusEl = document.getElementById('preloader-status');
 
-  if (!preloader || !counterEl) return;
+  if (!preloader) return;
 
-  // Prevent scroll during initial load
-  document.body.style.overflow = 'hidden';
+  let isDismissed = false;
 
-  let currentPercent = 0;
-  const duration = 1600; // ms
-  const startTime = performance.now();
+  function dismiss() {
+    if (isDismissed) return;
+    isDismissed = true;
+    
+    if (counterEl) counterEl.textContent = '100%';
+    if (fillEl) fillEl.style.width = '100%';
+    if (statusEl) statusEl.textContent = 'EXPERIENCE READY';
+
+    preloader.classList.add('fade-out');
+    preloader.style.opacity = '0';
+    preloader.style.pointerEvents = 'none';
+    preloader.style.visibility = 'hidden';
+    document.body.style.overflow = '';
+
+    // Remove from DOM render tree after animation completes
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 750);
+
+    // Trigger initial hero and visible scroll reveals
+    setTimeout(() => {
+      const heroReveals = document.querySelectorAll('#home .reveal, .hero-content .reveal, .reveal');
+      heroReveals.forEach((el, idx) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+          setTimeout(() => el.classList.add('active'), idx * 50);
+        }
+      });
+    }, 150);
+  }
+
+  // Tap/click to immediately skip preloader
+  preloader.addEventListener('click', dismiss);
+
+  // Safety Hard Timeout — GUARANTEES preloader never gets stuck
+  const safetyTimeout = setTimeout(dismiss, 1800);
+
+  // Smooth interval-driven counter (doesn't pause on background/webview)
+  let percent = 0;
+  const targetDuration = 1200; // ms
+  const stepInterval = 25; // ms
+  const totalSteps = targetDuration / stepInterval;
+  let currentStep = 0;
 
   const statusMessages = [
     { threshold: 0, text: 'INITIALIZING EXPERIENCE...' },
     { threshold: 30, text: 'LOADING INTERACTIVE DASHBOARDS...' },
     { threshold: 65, text: 'PREPARING MOTION & ANALYTICS...' },
-    { threshold: 92, text: 'EXPERIENCE READY' }
+    { threshold: 90, text: 'EXPERIENCE READY' }
   ];
 
-  function updateLoader(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    
-    // Smooth cubic easing for percentage count
+  const intervalId = setInterval(() => {
+    currentStep++;
+    const progress = Math.min(currentStep / totalSteps, 1);
+    // Cubic ease out
     const eased = 1 - Math.pow(1 - progress, 3);
-    currentPercent = Math.floor(eased * 100);
+    percent = Math.floor(eased * 100);
 
-    const formatted = currentPercent < 10 ? '0' + currentPercent + '%' : currentPercent + '%';
-    counterEl.textContent = formatted;
-    if (fillEl) fillEl.style.width = currentPercent + '%';
-
+    if (counterEl) {
+      counterEl.textContent = (percent < 10 ? '0' + percent : percent) + '%';
+    }
+    if (fillEl) {
+      fillEl.style.width = percent + '%';
+    }
     if (statusEl) {
       for (let i = statusMessages.length - 1; i >= 0; i--) {
-        if (currentPercent >= statusMessages[i].threshold) {
+        if (percent >= statusMessages[i].threshold) {
           statusEl.textContent = statusMessages[i].text;
           break;
         }
       }
     }
 
-    if (progress < 1) {
-      requestAnimationFrame(updateLoader);
-    } else {
-      setTimeout(() => {
-        preloader.classList.add('fade-out');
-        document.body.style.overflow = '';
-        
-        // Trigger initial reveal on hero
-        const initialReveals = document.querySelectorAll('#home .reveal');
-        initialReveals.forEach(el => el.classList.add('active'));
-      }, 280);
+    if (percent >= 100) {
+      clearInterval(intervalId);
+      clearTimeout(safetyTimeout);
+      setTimeout(dismiss, 200);
     }
-  }
+  }, stepInterval);
 
-  requestAnimationFrame(updateLoader);
+  // Also dismiss when window finishes loading if already over 1s
+  window.addEventListener('load', () => {
+    setTimeout(dismiss, 1200);
+  });
 })();
 
 document.addEventListener("DOMContentLoaded", () => {
