@@ -404,8 +404,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const normalizeSearch = (value = "") =>
     value.toString().toLowerCase()
-      .normalize("NFD").replace(/[\\u0300-\\u036f]/g, "")
-      .replace(/[^a-z0-9\\s#&-]/g, " ").replace(/\\s+/g, " ").trim();
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9\s#&-]/g, " ").replace(/\s+/g, " ").trim();
 
   const projectSearchIndex = new Map([...projectCards].map((card) => {
     const title = card.querySelector(".project-title, h3, h4")?.textContent || "";
@@ -469,15 +469,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Apply the initial state and keep filtering deterministic.
   applyProjectFilters();
 
-  // One delegated handler controls all project filter buttons.
-  document.querySelector(".project-filters")?.addEventListener("click", (event) => {
-    const button = event.target.closest(".project-filter");
-    if (!button) return;
-    event.preventDefault();
-    activeProjectFilter = button.dataset.filter || "all";
-    filterButtons.forEach((b) => b.classList.toggle("active", b === button));
-    applyProjectFilters();
-  });
 
   // Interactive Project Galleries
   const galleries = document.querySelectorAll(".project-gallery");
