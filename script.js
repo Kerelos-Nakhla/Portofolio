@@ -465,9 +465,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  applyProjectFilters();
-
-  // Interactive Project Galleries
+  // Ensure the Featured filter always maps to the six starred portfolio projects.\n  // The first six project cards are tagged data-category="featured" in the HTML.\n  applyProjectFilters();\n\n  // Defensive delegated handler: keeps filter buttons working even if other UI\n  // interactions or reveal animations rebind parts of the page.\n  document.querySelector(".project-filters")?.addEventListener("click", (event) => {\n    const button = event.target.closest(".project-filter");\n    if (!button) return;\n    const filter = button.dataset.filter || "all";\n    activeProjectFilter = filter;\n    filterButtons.forEach((b) => b.classList.toggle("active", b === button));\n    applyProjectFilters();\n  });\n\n  // Interactive Project Galleries
   const galleries = document.querySelectorAll(".project-gallery");
 
   galleries.forEach((gallery) => {
