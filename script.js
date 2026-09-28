@@ -6,10 +6,6 @@
 // 1. Rock-Solid Video Preloader & Curtain Reveal
 (function initVideoPreloader() {
   const preloader = document.getElementById('preloader');
-  const counterEl = document.getElementById('preloader-counter');
-  const fillEl = document.getElementById('preloader-bar-fill');
-  const statusEl = document.getElementById('preloader-status');
-
   if (!preloader) return;
 
   let isDismissed = false;
@@ -17,23 +13,18 @@
   function dismiss() {
     if (isDismissed) return;
     isDismissed = true;
-    
-    if (counterEl) counterEl.textContent = '100%';
-    if (fillEl) fillEl.style.width = '100%';
-    if (statusEl) statusEl.textContent = 'EXPERIENCE READY';
 
     preloader.classList.add('fade-out');
+    preloader.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s';
     preloader.style.opacity = '0';
     preloader.style.pointerEvents = 'none';
     preloader.style.visibility = 'hidden';
     document.body.style.overflow = '';
 
-    // Remove from DOM render tree after animation completes
     setTimeout(() => {
       preloader.style.display = 'none';
-    }, 750);
+    }, 700);
 
-    // Trigger initial hero and visible scroll reveals
     setTimeout(() => {
       const heroReveals = document.querySelectorAll('#home .reveal, .hero-content .reveal, .reveal');
       heroReveals.forEach((el, idx) => {
@@ -42,62 +33,23 @@
           setTimeout(() => el.classList.add('active'), idx * 50);
         }
       });
-    }, 150);
+    }, 100);
   }
 
-  // Tap/click to immediately skip preloader
+  // Click anywhere to immediately enter
   preloader.addEventListener('click', dismiss);
 
-  // Safety Hard Timeout — GUARANTEES preloader never gets stuck
-  const safetyTimeout = setTimeout(dismiss, 1800);
+  // Smooth automatic entrance after showing "Hello"
+  if (document.readyState === 'complete') {
+    setTimeout(dismiss, 1400);
+  } else {
+    window.addEventListener('load', () => {
+      setTimeout(dismiss, 1200);
+    });
+  }
 
-  // Smooth interval-driven counter (doesn't pause on background/webview)
-  let percent = 0;
-  const targetDuration = 1200; // ms
-  const stepInterval = 25; // ms
-  const totalSteps = targetDuration / stepInterval;
-  let currentStep = 0;
-
-  const statusMessages = [
-    { threshold: 0, text: 'INITIALIZING EXPERIENCE...' },
-    { threshold: 30, text: 'LOADING INTERACTIVE DASHBOARDS...' },
-    { threshold: 65, text: 'PREPARING MOTION & ANALYTICS...' },
-    { threshold: 90, text: 'EXPERIENCE READY' }
-  ];
-
-  const intervalId = setInterval(() => {
-    currentStep++;
-    const progress = Math.min(currentStep / totalSteps, 1);
-    // Cubic ease out
-    const eased = 1 - Math.pow(1 - progress, 3);
-    percent = Math.floor(eased * 100);
-
-    if (counterEl) {
-      counterEl.textContent = (percent < 10 ? '0' + percent : percent) + '%';
-    }
-    if (fillEl) {
-      fillEl.style.width = percent + '%';
-    }
-    if (statusEl) {
-      for (let i = statusMessages.length - 1; i >= 0; i--) {
-        if (percent >= statusMessages[i].threshold) {
-          statusEl.textContent = statusMessages[i].text;
-          break;
-        }
-      }
-    }
-
-    if (percent >= 100) {
-      clearInterval(intervalId);
-      clearTimeout(safetyTimeout);
-      setTimeout(dismiss, 200);
-    }
-  }, stepInterval);
-
-  // Also dismiss when window finishes loading if already over 1s
-  window.addEventListener('load', () => {
-    setTimeout(dismiss, 1200);
-  });
+  // Hard safety fallback
+  setTimeout(dismiss, 2800);
 })();
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -150,8 +102,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const getTheme = () =>
       document.documentElement.dataset.theme === "light"
-        ? { a: [78,205,196], b: [255,107,107], line: 0.10, glow: 0.12 }
-        : { a: [78,205,196], b: [255,107,107], line: 0.16, glow: 0.18 };
+        ? { a: [13,148,136], b: [225,29,72], line: 0.35, glow: 0.40, nodeAlpha: 0.75 }
+        : { a: [78,205,196], b: [255,107,107], line: 0.18, glow: 0.22, nodeAlpha: 0.55 };
 
     function resize() {
       width = window.innerWidth;
@@ -183,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.clearRect(0, 0, width, height);
 
       // Subtle analytical chart layer behind the portfolio content.
-      const chartAlpha = document.documentElement.dataset.theme === "light" ? 0.045 : 0.075;
+      const chartAlpha = document.documentElement.dataset.theme === "light" ? 0.16 : 0.075;
       const gridStep = Math.max(54, Math.min(84, width / 20));
       ctx.save();
       ctx.lineWidth = 1;
