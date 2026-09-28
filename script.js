@@ -4,9 +4,11 @@
    ========================================================================== */
 
 // 1. Rock-Solid Video Preloader & Curtain Reveal
-(function initVideoPreloader() {
+(function initTypewriterPreloader() {
   const preloader = document.getElementById('preloader');
-  if (!preloader) return;
+  const typedEl = document.getElementById('preloader-typed');
+  const cursorEl = document.getElementById('preloader-cursor');
+  if (!preloader || !typedEl) return;
 
   let isDismissed = false;
 
@@ -36,20 +38,34 @@
     }, 100);
   }
 
-  // Click anywhere to immediately enter
+  // Allow clicking anywhere to skip
   preloader.addEventListener('click', dismiss);
 
-  // Smooth automatic entrance after showing "Hello"
-  if (document.readyState === 'complete') {
-    setTimeout(dismiss, 1400);
-  } else {
-    window.addEventListener('load', () => {
-      setTimeout(dismiss, 1200);
-    });
+  // Typewriter sequence: h -> e -> l -> l -> o
+  const word = ['h', 'e', 'l', 'l', 'o'];
+  let currentIdx = 0;
+
+  function typeNextLetter() {
+    if (isDismissed) return;
+    if (currentIdx < word.length) {
+      typedEl.textContent += word[currentIdx];
+      currentIdx++;
+      // Type next letter with smooth human-like cadence
+      setTimeout(typeNextLetter, 220);
+    } else {
+      // Pause slightly on the finished word then dismiss smoothly
+      setTimeout(() => {
+        if (cursorEl) cursorEl.style.display = 'none';
+        dismiss();
+      }, 700);
+    }
   }
 
-  // Hard safety fallback
-  setTimeout(dismiss, 2800);
+  // Start typing after brief initial delay
+  setTimeout(typeNextLetter, 300);
+
+  // Safety fallback dismiss
+  setTimeout(dismiss, 3500);
 })();
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -356,7 +372,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const normalizeSearch = (value = "") =>
     value.toString().toLowerCase()
-      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .normalize("NFD").replace(/[̀-ͯ]/g, "")
       .replace(/[^a-z0-9\s#&-]/g, " ").replace(/\s+/g, " ").trim();
 
   const projectSearchIndex = new Map([...projectCards].map((card) => {
@@ -376,14 +392,43 @@ document.addEventListener("DOMContentLoaded", () => {
     let visibleCount = 0;
 
     projectCards.forEach((card) => {
-      const categories = (card.dataset.category || "").split(/\\s+/);
+      const rawCategories = (card.dataset.category || "").toLowerCase();
+      const categories = rawCategories.split(/\s+/);
       const searchableText = projectSearchIndex.get(card) || "";
-      const matchesFilter = activeProjectFilter === "all" || categories.includes(activeProjectFilter);
+      
+      const filterKey = activeProjectFilter.toLowerCase();
+      let matchesFilter = false;
+
+      if (filterKey === "all") {
+        matchesFilter = true;
+      } else if (filterKey === "featured") {
+        matchesFilter = categories.includes("featured");
+      } else if (filterKey === "powerbi") {
+        matchesFilter = categories.includes("powerbi") || rawCategories.includes("power");
+      } else if (filterKey === "excel") {
+        matchesFilter = categories.includes("excel");
+      } else {
+        matchesFilter = categories.includes(filterKey);
+      }
+
       const matchesSearch = terms.length === 0 || terms.every((term) => searchableText.includes(term));
       const show = matchesFilter && matchesSearch;
+
       card.classList.toggle("is-filtered-out", !show);
       card.hidden = !show;
-      if (show) visibleCount += 1;
+
+      if (show) {
+        visibleCount += 1;
+        // Ensure shown cards are immediately visible and not blocked by scroll reveal
+        card.classList.add("active");
+        card.style.opacity = "1";
+        card.style.visibility = "visible";
+        card.style.transform = "none";
+      } else {
+        card.style.opacity = "";
+        card.style.visibility = "";
+        card.style.transform = "";
+      }
     });
 
     if (projectFilterStatus) {
@@ -399,7 +444,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   filterButtons.forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
       activeProjectFilter = button.dataset.filter || "all";
       filterButtons.forEach((b) => b.classList.toggle("active", b === button));
       applyProjectFilters();
