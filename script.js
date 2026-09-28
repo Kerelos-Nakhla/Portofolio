@@ -4,29 +4,36 @@
    ========================================================================== */
 
 // 1. Rock-Solid Video Preloader & Curtain Reveal
-(function initTypewriterPreloader() {
+(function initVideoPreloader() {
   const preloader = document.getElementById('preloader');
-  const typedEl = document.getElementById('preloader-typed');
-  const cursorEl = document.getElementById('preloader-cursor');
-  if (!preloader || !typedEl) return;
+  const counterEl = document.getElementById('preloader-counter');
+  const fillEl = document.getElementById('preloader-bar-fill');
+  const statusEl = document.getElementById('preloader-status');
+
+  if (!preloader) return;
 
   let isDismissed = false;
 
   function dismiss() {
     if (isDismissed) return;
     isDismissed = true;
+    
+    if (counterEl) counterEl.textContent = '100%';
+    if (fillEl) fillEl.style.width = '100%';
+    if (statusEl) statusEl.textContent = 'EXPERIENCE READY';
 
     preloader.classList.add('fade-out');
-    preloader.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s';
     preloader.style.opacity = '0';
     preloader.style.pointerEvents = 'none';
     preloader.style.visibility = 'hidden';
     document.body.style.overflow = '';
 
+    // Remove from DOM render tree after animation completes
     setTimeout(() => {
       preloader.style.display = 'none';
-    }, 700);
+    }, 750);
 
+    // Trigger initial hero and visible scroll reveals
     setTimeout(() => {
       const heroReveals = document.querySelectorAll('#home .reveal, .hero-content .reveal, .reveal');
       heroReveals.forEach((el, idx) => {
@@ -35,37 +42,62 @@
           setTimeout(() => el.classList.add('active'), idx * 50);
         }
       });
-    }, 100);
+    }, 150);
   }
 
-  // Allow clicking anywhere to skip
+  // Tap/click to immediately skip preloader
   preloader.addEventListener('click', dismiss);
 
-  // Typewriter sequence: h -> e -> l -> l -> o
-  const word = ['h', 'e', 'l', 'l', 'o'];
-  let currentIdx = 0;
+  // Safety Hard Timeout — GUARANTEES preloader never gets stuck
+  const safetyTimeout = setTimeout(dismiss, 2000);
 
-  function typeNextLetter() {
-    if (isDismissed) return;
-    if (currentIdx < word.length) {
-      typedEl.textContent += word[currentIdx];
-      currentIdx++;
-      // Type next letter with smooth human-like cadence
-      setTimeout(typeNextLetter, 220);
-    } else {
-      // Pause slightly on the finished word then dismiss smoothly
-      setTimeout(() => {
-        if (cursorEl) cursorEl.style.display = 'none';
-        dismiss();
-      }, 700);
+  // Smooth interval-driven counter
+  let percent = 0;
+  const targetDuration = 1100; // ms
+  const stepInterval = 25; // ms
+  const totalSteps = targetDuration / stepInterval;
+  let currentStep = 0;
+
+  const statusMessages = [
+    { threshold: 0, text: 'INITIALIZING EXPERIENCE...' },
+    { threshold: 30, text: 'LOADING INTERACTIVE DASHBOARDS...' },
+    { threshold: 65, text: 'PREPARING MOTION & ANALYTICS...' },
+    { threshold: 90, text: 'EXPERIENCE READY' }
+  ];
+
+  const intervalId = setInterval(() => {
+    currentStep++;
+    const progress = Math.min(currentStep / totalSteps, 1);
+    // Cubic ease out
+    const eased = 1 - Math.pow(1 - progress, 3);
+    percent = Math.floor(eased * 100);
+
+    if (counterEl) {
+      counterEl.textContent = (percent < 10 ? '0' + percent : percent) + '%';
     }
-  }
+    if (fillEl) {
+      fillEl.style.width = percent + '%';
+    }
+    if (statusEl) {
+      for (let i = statusMessages.length - 1; i >= 0; i--) {
+        if (percent >= statusMessages[i].threshold) {
+          statusEl.textContent = statusMessages[i].text;
+          break;
+        }
+      }
+    }
 
-  // Start typing after brief initial delay
-  setTimeout(typeNextLetter, 300);
+    if (percent >= 100) {
+      clearInterval(intervalId);
+      clearTimeout(safetyTimeout);
+      setTimeout(dismiss, 200);
+    }
+  }, stepInterval);
 
-  // Safety fallback dismiss
-  setTimeout(dismiss, 3500);
+  // Also dismiss when window finishes loading if already over 1s
+  window.addEventListener('load', () => {
+    setTimeout(dismiss, 1200);
+  });
 })();
 
 document.addEventListener("DOMContentLoaded", () => {
