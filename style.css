@@ -3957,3 +3957,47 @@ main{
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* Typewriter Hello Styling */
+.preloader-hello-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  min-height: 1.2em;
+}
+.preloader-hello-typed {
+  background: linear-gradient(135deg, #ffffff 40%, #4ECDC4 75%, #FF6B6B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+.preloader-hello-cursor {
+  display: inline-block;
+  margin-left: 6px;
+  color: #4ECDC4;
+  font-weight: 300;
+  animation: blinkCaret 0.75s step-start infinite;
+}
+@keyframes blinkCaret {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Filter guarantee */
+.project-card.is-filtered-out,
+.project-card[hidden] {
+  display: none !important;
+}
+.project-card:not(.is-filtered-out):not([hidden]) {
+  display: grid;
+}
+@media (max-width: 900px) {
+  .project-card:not(.is-filtered-out):not([hidden]) {
+    display: block;
+  }
+}
