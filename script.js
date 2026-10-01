@@ -400,7 +400,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const projectSearch = document.getElementById("projectSearch");
   const projectSearchClear = document.getElementById("projectSearchClear");
   const projectFilterStatus = document.getElementById("projectFilterStatus");
-  let activeProjectFilter = "all";
+  let activeProjectFilter = "featured";
 
   const normalizeSearch = (value = "") =>
     value.toString().toLowerCase()
