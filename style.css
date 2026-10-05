@@ -2402,7 +2402,7 @@ body {
   margin-top: 2px;
 }
 
-/* Functional Action Buttons */
+/* Functional Action Buttons — High-Contrast Dual-Theme Design */
 .project-actions-bar {
   grid-column: 1 / -1;
   width: 100%;
@@ -2412,7 +2412,7 @@ body {
   gap: 12px;
   margin-top: 16px;
   padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--line, rgba(26, 26, 46, 0.09));
 }
 
 .action-btn {
@@ -2427,46 +2427,109 @@ body {
   text-decoration: none;
   white-space: nowrap;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
+/* Primary Button (Universal) */
 .action-btn-primary {
   background: linear-gradient(135deg, #4ECDC4 0%, #36b3a9 100%);
   color: #0b0c16 !important;
   font-weight: 700;
+  box-shadow: 0 4px 14px rgba(78, 205, 196, 0.3);
 }
 
 .action-btn-primary:hover {
   background: linear-gradient(135deg, #5fe0d7 0%, #4ECDC4 100%);
-  box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+  box-shadow: 0 6px 20px rgba(78, 205, 196, 0.45);
   transform: translateY(-2px);
 }
 
+/* Secondary Button (Default Light Theme: crisp light-grey pill with dark text) */
 .action-btn-secondary {
-  background: rgba(255, 255, 255, 0.07);
-  color: #f0f0f8 !important;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(8px);
+  background: #edf3f8;
+  color: #1a1a2e !important;
+  border: 1px solid #c9d7e3;
 }
 
 .action-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(78, 205, 196, 0.4);
-  color: #ffffff !important;
+  background: #e0ecf7;
+  border-color: #4ECDC4;
+  color: #0b0c16 !important;
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+/* Outline Button (Default Light Theme: white card with crisp border and dark text) */
 .action-btn-outline {
-  background: rgba(15, 15, 28, 0.5);
-  color: #b0b0cc !important;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #ffffff;
+  color: #2b2e4a !important;
+  border: 1px solid #d5dee6;
 }
 
 .action-btn-outline:hover {
+  color: #0d8276 !important;
+  border-color: #4ECDC4;
+  background: rgba(78, 205, 196, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Dark Theme Overrides for Action Buttons */
+[data-theme="dark"] .project-actions-bar {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .action-btn {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .action-btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f0f0f8 !important;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="dark"] .action-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(78, 205, 196, 0.5);
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .action-btn-outline {
+  background: rgba(15, 15, 28, 0.6);
+  color: #b0b0cc !important;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .action-btn-outline:hover {
   color: #4ECDC4 !important;
   border-color: #4ECDC4;
-  background: rgba(78, 205, 196, 0.08);
-  transform: translateY(-2px);
+  background: rgba(78, 205, 196, 0.1);
+}
+
+/* Filter Buttons Light Theme Support */
+:root:not([data-theme="dark"]) .filter-btn,
+[data-theme="light"] .filter-btn {
+  background: #edf3f8;
+  border: 1px solid #d2dde6;
+  color: #495057;
+}
+
+:root:not([data-theme="dark"]) .filter-btn:hover,
+[data-theme="light"] .filter-btn:hover {
+  background: rgba(78, 205, 196, 0.16);
+  color: #0b0c16;
+  border-color: #4ECDC4;
+}
+
+:root:not([data-theme="dark"]) .filter-btn.active,
+[data-theme="light"] .filter-btn.active {
+  background: #4ECDC4;
+  color: #0d0d1a !important;
+  border-color: #4ECDC4;
+  font-weight: 700;
+  box-shadow: 0 3px 10px rgba(78, 205, 196, 0.35);
 }
 
 /* ==========================================================================
